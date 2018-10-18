@@ -32,6 +32,8 @@ public class Player extends Unit {
     private boolean jumpFlag;
     // 1つ前のフレームのy座標
     private int previewYPoint;
+    // Y軸の移動距離
+    private int moveYPoint;
 
     /**
      * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
@@ -62,10 +64,7 @@ public class Player extends Unit {
         if (yPoint < 0) {
             yPoint = WindowConfig.ySize;
         }
-
         jump();
-
-        // System.out.println(jumpFlag);
     }
 
     /**
@@ -85,12 +84,27 @@ public class Player extends Unit {
         }
     }
 
+    /**
+     * オブジェクトに重力を追加するメソッド
+     */
     public void addGravity() {
         this.yPoint += WindowConfig.gravity;
     }
 
+    /**
+     * jumpFlagを更新するメソッド
+     * @param flag
+     */
     public void setJumpFlag(boolean flag) {
         jumpFlag = flag;
+    }
+
+    /**
+     * Y軸の座標を更新するメソッド
+     * @param yPoint
+     */
+    public void setYPoint(int yPoint) {
+        this.yPoint = yPoint;
     }
 
     /**
@@ -102,7 +116,8 @@ public class Player extends Unit {
         }
 
         int yTmp = yPoint;
-        yPoint += (yPoint - previewYPoint);
+        moveYPoint = (yPoint - previewYPoint);
+        yPoint += moveYPoint;
         previewYPoint = yTmp;
     }
 
@@ -117,8 +132,7 @@ public class Player extends Unit {
         yPoint -= CharacterConfig.jumpPoint;
     }
 
-    public void setYPoint(int yPoint) {
-        this.yPoint = yPoint;
+    public void reverseMoveYPoint() {
+        moveYPoint *= -1;
     }
-
 }

@@ -9,14 +9,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class Floor extends Block {
-    private int xSize;
     private int xPoint;
     private int yPoint;
+    private int xSize;
+    private int ySize;
 
     @Override
     public void print(Graphics graphics) {
         graphics.setColor(Color.ORANGE);
-        graphics.drawLine(xPoint, yPoint, xPoint + xSize, yPoint);
+        graphics.drawRect(xPoint, yPoint, xSize, ySize);
     }
 
     @Override

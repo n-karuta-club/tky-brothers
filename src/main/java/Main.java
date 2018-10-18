@@ -11,21 +11,25 @@ import javax.swing.SwingUtilities;
 import block.Floor;
 import block.Map;
 import config.CharacterConfig;
+import config.FloorConfig;
 import config.WindowConfig;
 import service.MapService;
 import unit.Player;
 
 public class Main extends JPanel implements Runnable, KeyListener {
     Thread thread = null;
+    ArrayList<Floor> floorList = new ArrayList<>();
 
     Map map = new Map(WindowConfig.xSize, WindowConfig.ySize);
     Player tky = new Player(CharacterConfig.xPoint, CharacterConfig.yPoint, CharacterConfig.move, CharacterConfig.life,
-            KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE, KeyEvent.VK_RIGHT, false, 0);
-    Floor mainFloor = new Floor(WindowConfig.xSize + 200, 0, WindowConfig.ySize - 32);
-    Floor floor1 = new Floor(WindowConfig.xSize /2, 100, WindowConfig.ySize - 120);
-    Floor floor2 = new Floor(WindowConfig.xSize /2, 150, WindowConfig.ySize - 220);
-    ArrayList<Floor> floorList = new ArrayList<>();
+            KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE, KeyEvent.VK_RIGHT, false, 0, 0);
+    Floor mainFloor = new Floor(-10, WindowConfig.ySize - 32, WindowConfig.xSize + 100, FloorConfig.ySize);
+    Floor floor1 = new Floor(-10, WindowConfig.ySize - 150, WindowConfig.xSize / 2, FloorConfig.ySize);
+    Floor floor2 = new Floor(100, WindowConfig.ySize - 200, WindowConfig.xSize / 2, FloorConfig.ySize);
 
+    /**
+     * コンストラクタ
+     */
     public Main() {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
         startThread();
@@ -49,7 +53,6 @@ public class Main extends JPanel implements Runnable, KeyListener {
     @Override
     public void run() {
         Thread currentThread = Thread.currentThread();
-
         addFloorList();
 
         while (thread == currentThread) {
@@ -61,16 +64,9 @@ public class Main extends JPanel implements Runnable, KeyListener {
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
-                // TODO 自動生成された catch ブロック
                 e.printStackTrace();
             }
         }
-    }
-
-    private void addFloorList() {
-        floorList.add(mainFloor);
-        floorList.add(floor1);
-        floorList.add(floor2);
     }
 
     /**
@@ -84,6 +80,15 @@ public class Main extends JPanel implements Runnable, KeyListener {
         mainFloor.print(graphics);
         floor1.print(graphics);
         floor2.print(graphics);
+    }
+
+    /**
+     *  床オブジェクトのリストを作成する
+     */
+    private void addFloorList() {
+        floorList.add(mainFloor);
+        floorList.add(floor1);
+        floorList.add(floor2);
     }
 
     /**
