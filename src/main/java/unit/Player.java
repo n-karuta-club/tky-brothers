@@ -22,11 +22,19 @@ public class Player {
     private boolean jumpFlag;
     private int previewYPoint;
 
+    /**
+     * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
+     * @param graphics
+     */
     public void print(Graphics graphics) {
         graphics.setColor(Color.GREEN);
         graphics.fillOval(xPoint, yPoint, CharacterConfig.xSize, CharacterConfig.ySize);
     }
 
+    /**
+     * KeyPressedメソッドで呼び出すことでオブジェクトを移動できるようにするメソッド
+     * @param event
+     */
     public void move(KeyEvent event) {
         if (event.getKeyCode() == moveLeftButton) {
             xPoint -= move;
@@ -40,6 +48,9 @@ public class Player {
         }
     }
 
+    /**
+     * runメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
+     */
     public void jump() {
         if (!jumpFlag) {
             return;
@@ -53,6 +64,9 @@ public class Player {
         }
     }
 
+    /**
+     * jumpする時に呼び出されるメソッド
+     */
     private void jumpFlagInit() {
         if (jumpFlag) {
             return;

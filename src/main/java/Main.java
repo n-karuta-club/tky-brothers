@@ -23,6 +23,9 @@ public class Main extends JPanel implements Runnable, KeyListener {
         addKeyListener(this);
     }
 
+    /**
+     * プログラム実行時のThreadを取得し、Threadをスタートする。
+     */
     public void startThread() {
         if (thread == null) {
             thread = new Thread(this);
@@ -30,6 +33,9 @@ public class Main extends JPanel implements Runnable, KeyListener {
         }
     }
 
+    /**
+     * プログラムを実行する。
+     */
     @Override
     public void run() {
         Thread currentThread = Thread.currentThread();
@@ -46,25 +52,40 @@ public class Main extends JPanel implements Runnable, KeyListener {
         }
     }
 
+    /**
+     * 画面に物体を表示する。
+     */
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         tky.print(graphics);
     }
 
+    /**
+     * KeyEvent系(Keyが押された時)
+     */
     @Override
     public void keyPressed(KeyEvent event) {
         tky.move(event);
     }
 
+    /**
+     * KeyEvent系(Keyが押された時)
+     */
     @Override
     public void keyTyped(KeyEvent event) {
     }
 
+    /**
+     * KeyEvent系(Keyが離された時)
+     */
     @Override
     public void keyReleased(KeyEvent event) {
     }
 
+    /**
+     * Main文
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Tky Brozers");
