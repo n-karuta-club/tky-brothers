@@ -9,12 +9,14 @@ import javax.swing.SwingUtilities;
 
 import config.CharacterConfig;
 import config.WindowConfig;
+import unit.Floor;
 import unit.Player;
 
 public class Main extends JPanel implements Runnable, KeyListener {
     Thread thread = null;
     Player tky = new Player(CharacterConfig.xPoint, CharacterConfig.yPoint, CharacterConfig.move, CharacterConfig.life,
             KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE, KeyEvent.VK_RIGHT, false, 0);
+    Floor mainFLoor = new Floor(WindowConfig.xSize + 200, 0, WindowConfig.ySize - 32);
 
     public Main() {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
@@ -42,6 +44,7 @@ public class Main extends JPanel implements Runnable, KeyListener {
 
         while (thread == currentThread) {
             tky.jump();
+            tky.status();
             repaint();
             try {
                 Thread.sleep(50);
@@ -59,6 +62,7 @@ public class Main extends JPanel implements Runnable, KeyListener {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         tky.print(graphics);
+        mainFLoor.print(graphics);
     }
 
     /**
