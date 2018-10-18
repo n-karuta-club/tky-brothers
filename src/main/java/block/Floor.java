@@ -1,14 +1,15 @@
-package unit;
+package block;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import unit.Player;
 
 @Getter
 @AllArgsConstructor
-public class Floor {
+public class Floor extends Block {
     private int xSize;
     private int xPoint;
     private int yPoint;

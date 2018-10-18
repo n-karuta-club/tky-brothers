@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import block.Floor;
 import config.CharacterConfig;
 import config.WindowConfig;
-import unit.Floor;
 import unit.Player;
 
 public class Main extends JPanel implements Runnable, KeyListener {

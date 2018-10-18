@@ -11,7 +11,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class Player {
+public class Player extends Unit {
     // x座標
     private int xPoint;
     // y座標
@@ -37,6 +37,7 @@ public class Player {
      * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
      * @param graphics
      */
+    @Override
     public void print(Graphics graphics) {
         graphics.setColor(Color.GREEN);
         graphics.fillOval(xPoint, yPoint, CharacterConfig.xSize, CharacterConfig.ySize);
@@ -63,6 +64,7 @@ public class Player {
      * オブジェクトの状態を確認するメソッド。
      * 画面外にはみ出したら逆方向から出てくるようにしている。
      */
+    @Override
     public void status() {
         if (xPoint > WindowConfig.xSize) {
             xPoint = 0;
