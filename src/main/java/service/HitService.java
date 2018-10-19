@@ -59,7 +59,7 @@ public class HitService {
         // if (player.getYPoint() != floor.getYPoint() - CharacterConfig.ySize) {
         //     return true;
         // }
-        if (player.getYPoint() > floor.getYPoint() - floor.getYSize() && player.getYPoint() <= floor.getYPoint()) {
+        if (player.getYPoint() > floor.getYPoint() - floor.getYSize() * 2 && player.getYPoint() <= floor.getYPoint()) {
             return false;
         }
         return true;

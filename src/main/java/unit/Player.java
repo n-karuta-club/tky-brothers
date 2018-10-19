@@ -108,6 +108,17 @@ public class Player extends Unit {
     }
 
     /**
+     * jumpする時に呼び出されるメソッド
+     */
+    private void jumpFlagInit() {
+        if (jumpFlag) {
+            return;
+        }
+        previewYPoint = yPoint;
+        yPoint -= CharacterConfig.jumpPoint;
+    }
+
+    /**
      * runメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
      */
     private void jump() {
@@ -121,18 +132,9 @@ public class Player extends Unit {
         previewYPoint = yTmp;
     }
 
-    /**
-     * jumpする時に呼び出されるメソッド
-     */
-    private void jumpFlagInit() {
-        if (jumpFlag) {
-            return;
-        }
-        previewYPoint = yPoint;
-        yPoint -= CharacterConfig.jumpPoint;
-    }
 
     public void reverseMoveYPoint() {
-        moveYPoint *= -1;
+        System.out.println("reverse");
+        this.moveYPoint *= -1;
     }
 }

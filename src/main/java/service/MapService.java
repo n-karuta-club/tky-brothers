@@ -41,8 +41,8 @@ public class MapService {
             player.setJumpFlag(false);
         }
 
-        if (player.getYPoint() >= WindowConfig.ySize - 32) {
-            player.setYPoint(WindowConfig.ySize - 32);
+        if (player.getYPoint() >= WindowConfig.ySize - 64) {
+            player.setYPoint(WindowConfig.ySize - 64);
             player.setJumpFlag(false);
         }
 
