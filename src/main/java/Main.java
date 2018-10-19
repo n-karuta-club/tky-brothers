@@ -14,6 +14,7 @@ import config.CharacterConfig;
 import config.FloorConfig;
 import config.WindowConfig;
 import service.MapService;
+import unit.Enemy;
 import unit.Player;
 
 public class Main extends JPanel implements Runnable, KeyListener {
@@ -26,6 +27,9 @@ public class Main extends JPanel implements Runnable, KeyListener {
     Floor mainFloor = new Floor(-10, WindowConfig.ySize - 32, WindowConfig.xSize + 100, FloorConfig.ySize);
     Floor floor1 = new Floor(-10, WindowConfig.ySize - 150, WindowConfig.xSize / 2, FloorConfig.ySize);
     Floor floor2 = new Floor(100, WindowConfig.ySize - 200, WindowConfig.xSize / 2, FloorConfig.ySize);
+
+    Enemy enemy1 = new Enemy(100, CharacterConfig.yPoint, "left");
+    Enemy enemy2 = new Enemy(100, CharacterConfig.yPoint, "right");
 
     /**
      * コンストラクタ
@@ -58,6 +62,8 @@ public class Main extends JPanel implements Runnable, KeyListener {
         while (thread == currentThread) {
             map.status();
             tky.status();
+            enemy1.status();
+            enemy2.status();
             MapService.addGravityToPlayer(tky, floorList);
             // System.out.println(tky.getYPoint());
             repaint();
@@ -80,6 +86,8 @@ public class Main extends JPanel implements Runnable, KeyListener {
         mainFloor.print(graphics);
         floor1.print(graphics);
         floor2.print(graphics);
+        enemy1.print(graphics);
+        enemy2.print(graphics);
     }
 
     /**
