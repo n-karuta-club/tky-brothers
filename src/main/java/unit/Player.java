@@ -132,7 +132,6 @@ public class Player extends Unit {
         previewYPoint = yTmp;
     }
 
-
     public void reverseMoveYPoint() {
         System.out.println("reverse");
         this.moveYPoint *= -1;

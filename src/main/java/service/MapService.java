@@ -6,6 +6,7 @@ import block.Floor;
 import config.WindowConfig;
 import lombok.val;
 import unit.Player;
+import util.MapUtil;
 
 public class MapService {
 
@@ -20,8 +21,8 @@ public class MapService {
         // それぞれのfloorインスタンスとの接触を判定する
         // どれかのインスタンスと接していればgravityFlagをfalseにする
         for (val floor : floorList) {
-            if (!HitService.isPlayerGravity(player, floor)) {
-                if (HitService.clashPlayerFloor(player)) {
+            if (!MapUtil.isPlayerGravity(player, floor)) {
+                if (MapUtil.clashPlayerFloor(player)) {
                     break;
                 }
                 gravityFlag = false;
