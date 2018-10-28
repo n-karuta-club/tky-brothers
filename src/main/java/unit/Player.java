@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import config.CharacterConfig;
+import config.PlayerConfig;
 import config.WindowConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,7 +42,7 @@ public class Player extends Unit {
     @Override
     public void print(Graphics graphics) {
         graphics.setColor(Color.GREEN);
-        graphics.fillOval(xPoint, yPoint, CharacterConfig.xSize, CharacterConfig.ySize);
+        graphics.fillOval(xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize);
     }
 
     /**
@@ -115,7 +115,7 @@ public class Player extends Unit {
             return;
         }
         previewYPoint = yPoint;
-        yPoint -= CharacterConfig.jumpPoint;
+        yPoint -= PlayerConfig.jumpPoint;
     }
 
     /**

@@ -3,7 +3,7 @@ package unit;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import config.CharacterConfig;
+import config.EnemyConfig;
 import config.WindowConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,17 +18,17 @@ public class Enemy extends Unit {
     @Override
     public void print(Graphics graphics) {
         graphics.setColor(Color.RED);
-        graphics.fillOval(xPoint, yPoint, CharacterConfig.xSize, CharacterConfig.ySize);
+        graphics.fillOval(xPoint, yPoint, EnemyConfig.xSize, EnemyConfig.ySize);
     }
 
     @Override
     public void status() {
         switch (moveDirection) {
         case "left":
-            xPoint += CharacterConfig.move;
+            xPoint += EnemyConfig.move;
             break;
         case "right":
-            xPoint -= CharacterConfig.move;
+            xPoint -= EnemyConfig.move;
             break;
         }
 

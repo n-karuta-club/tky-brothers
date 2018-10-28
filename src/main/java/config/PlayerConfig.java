@@ -1,6 +1,6 @@
 package config;
 
-public class CharacterConfig {
+public class PlayerConfig {
     public static final int move = 5;
     public static final int life  = 3;
     public static final int xSize = 32;
