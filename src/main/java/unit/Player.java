@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import config.CharacterConfig;
+import config.PlayerConfig;
 import config.WindowConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class Player {
+public class Player extends Unit {
     // x座標
     private int xPoint;
     // y座標
@@ -32,37 +32,25 @@ public class Player {
     private boolean jumpFlag;
     // 1つ前のフレームのy座標
     private int previewYPoint;
+    // Y軸の移動距離
+    private int moveYPoint;
 
     /**
      * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
      * @param graphics
      */
+    @Override
     public void print(Graphics graphics) {
         graphics.setColor(Color.GREEN);
-        graphics.fillOval(xPoint, yPoint, CharacterConfig.xSize, CharacterConfig.ySize);
-    }
-
-    /**
-     * KeyPressedメソッドで呼び出すことでオブジェクトを移動できるようにするメソッド
-     * @param event
-     */
-    public void move(KeyEvent event) {
-        if (event.getKeyCode() == moveLeftButton) {
-            xPoint -= move;
-        }
-        if (event.getKeyCode() == moveRightButton) {
-            xPoint += move;
-        }
-        if (event.getKeyCode() == moveJumpButton) {
-            jumpFlagInit();
-            jumpFlag = true;
-        }
+        graphics.fillOval(xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize);
     }
 
     /**
      * オブジェクトの状態を確認するメソッド。
      * 画面外にはみ出したら逆方向から出てくるようにしている。
+     * runメソッドで呼び出す
      */
+    @Override
     public void status() {
         if (xPoint > WindowConfig.xSize) {
             xPoint = 0;
@@ -76,22 +64,47 @@ public class Player {
         if (yPoint < 0) {
             yPoint = WindowConfig.ySize;
         }
+        jump();
     }
 
     /**
-     * runメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
+     * KeyPressedメソッドで呼び出すことでオブジェクトを移動できるようにするメソッド
+     * @param event
      */
-    public void jump() {
-        if (!jumpFlag) {
-            return;
+    public void action(KeyEvent event) {
+        if (event.getKeyCode() == moveLeftButton) {
+            xPoint -= move;
         }
+        if (event.getKeyCode() == moveRightButton) {
+            xPoint += move;
+        }
+        if (event.getKeyCode() == moveJumpButton) {
+            jumpFlagInit();
+            jumpFlag = true;
+        }
+    }
 
-        int yTmp = yPoint;
-        yPoint += (yPoint - previewYPoint) + 1;
-        previewYPoint = yTmp;
-        if (yPoint == CharacterConfig.yPoint) {
-            jumpFlag = false;
-        }
+    /**
+     * オブジェクトに重力を追加するメソッド
+     */
+    public void addGravity() {
+        this.yPoint += WindowConfig.gravity;
+    }
+
+    /**
+     * jumpFlagを更新するメソッド
+     * @param flag
+     */
+    public void setJumpFlag(boolean flag) {
+        jumpFlag = flag;
+    }
+
+    /**
+     * Y軸の座標を更新するメソッド
+     * @param yPoint
+     */
+    public void setYPoint(int yPoint) {
+        this.yPoint = yPoint;
     }
 
     /**
@@ -102,6 +115,25 @@ public class Player {
             return;
         }
         previewYPoint = yPoint;
-        yPoint -= CharacterConfig.jumpPoint;
+        yPoint -= PlayerConfig.jumpPoint;
+    }
+
+    /**
+     * runメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
+     */
+    private void jump() {
+        if (!jumpFlag) {
+            return;
+        }
+
+        int yTmp = yPoint;
+        moveYPoint = (yPoint - previewYPoint);
+        yPoint += moveYPoint;
+        previewYPoint = yTmp;
+    }
+
+    public void reverseMoveYPoint() {
+        System.out.println("reverse");
+        this.moveYPoint *= -1;
     }
 }
