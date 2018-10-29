@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import block.Floor;
-import config.WindowConfig;
 import service.EnemyService;
 import service.FloorService;
 import service.MapService;
@@ -18,17 +16,19 @@ import unit.Enemy;
 import unit.Player;
 
 public class MainGame extends JPanel implements Runnable, KeyListener {
-    Thread thread = null;
+    private Thread thread = null;
+    // private GameWindow gameWindow;
 
     private ArrayList<Player> playerList = PlayerService.playerList;
     private ArrayList<Floor>  floorList = FloorService.floorList;
     private ArrayList<Enemy> enemyList = EnemyService.enemyList;
 
-    public MainGame() {
-        setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
+    public MainGame(GameWindow gameWindow) {
+        // this.gameWindow = gameWindow;
         startThread();
+        gameWindow.addKeyListener(this);
         setFocusable(true);
-        addKeyListener(this);
+        System.out.println("hoge");
     }
 
     /**
@@ -56,6 +56,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
             enemyList.forEach(enemy -> {
                 enemy.status();
             });
+
             repaint();
             try {
                 Thread.sleep(50);

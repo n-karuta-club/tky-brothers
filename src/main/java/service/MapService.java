@@ -47,7 +47,7 @@ public class MapService {
             player.setJumpFlag(false);
         }
 
-        System.out.println(player.getMoveYPoint());
-        System.out.println(gravityFlag);
+       //  System.out.println(player.getMoveYPoint());
+       //  System.out.println(gravityFlag);
     }
 }
