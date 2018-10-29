@@ -23,11 +23,11 @@ public class StartGame extends JPanel {
         val button2 = new JButton("2 player");
         button1.addActionListener(event -> {
             singlePlayerModeSetting();
-            gameWindow.change(new MainGame());
+            gameWindow.change(new MainGame(gameWindow));
         });
         button2.addActionListener(event -> {
             twoPlayerModeSetting();
-            gameWindow.change(new MainGame());
+            gameWindow.change(new MainGame(gameWindow));
         });
         add(button1);
         add(button2);
