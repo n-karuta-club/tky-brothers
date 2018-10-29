@@ -28,7 +28,6 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         startThread();
         gameWindow.addKeyListener(this);
         setFocusable(true);
-        System.out.println("hoge");
     }
 
     /**

@@ -23,7 +23,7 @@ public class MapUtil {
      */
     public static boolean clashPlayerFloor(Player player) {
         if (player.getMoveYPoint() < 0) {
-            player.reverseMoveYPoint();
+            // player.reverseMoveYPoint();
             return true;
         }
         return false;

@@ -24,7 +24,7 @@ public class HitUtil {
      * @return
      */
     public static boolean isYPoint(Player player, Floor floor) {
-        if (player.getYPoint() > floor.getYPoint() - floor.getYSize() * 2 && player.getYPoint() <= floor.getYPoint()) {
+        if (player.getYPoint() > floor.getYPoint() - floor.getYSize() && player.getYPoint() <= floor.getYPoint()) {
             return false;
         }
         return true;

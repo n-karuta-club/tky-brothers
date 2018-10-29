@@ -21,7 +21,7 @@ public class FloorService {
      */
     public static void initialize() {
         addFloor(-10, WindowConfig.ySize - 32, WindowConfig.xSize + 100, FloorConfig.ySize);
-        addFloor(-10, WindowConfig.ySize - 150, WindowConfig.xSize / 2, FloorConfig.ySize);
-        addFloor(100, WindowConfig.ySize - 200, WindowConfig.xSize / 2, FloorConfig.ySize);
+        addFloor(-10, WindowConfig.ySize - 170, WindowConfig.xSize / 2, FloorConfig.ySize);
+        addFloor(100, WindowConfig.ySize - 300, WindowConfig.xSize / 2, FloorConfig.ySize);
     }
 }

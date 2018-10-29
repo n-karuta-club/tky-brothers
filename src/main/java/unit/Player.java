@@ -119,7 +119,7 @@ public class Player extends Unit {
     }
 
     /**
-     * runメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
+     * statusメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
      */
     private void jump() {
         if (!jumpFlag) {
@@ -130,10 +130,5 @@ public class Player extends Unit {
         moveYPoint = (yPoint - previewYPoint);
         yPoint += moveYPoint;
         previewYPoint = yTmp;
-    }
-
-    public void reverseMoveYPoint() {
-        System.out.println("reverse");
-        this.moveYPoint *= -1;
     }
 }

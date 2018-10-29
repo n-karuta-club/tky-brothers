@@ -11,7 +11,7 @@ public class PlayerService {
 
     public static void addFirstPlayer() {
         playerList.add(new Player(PlayerConfig.xPoint - 100, PlayerConfig.yPoint, PlayerConfig.move, PlayerConfig.life,
-                KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_SPACE, KeyEvent.VK_RIGHT, false, 0, 0));
+                KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_UP, KeyEvent.VK_RIGHT, false, 0, 0));
     }
 
     public static void addSecondPlayer() {
