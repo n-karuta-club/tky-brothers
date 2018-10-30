@@ -3,6 +3,6 @@ package unit;
 import java.awt.Graphics;
 
 abstract class Unit {
-    abstract void print(Graphics graphics);
-    abstract void status();
+    abstract public void print(Graphics graphics);
+    abstract public void status();
 }
