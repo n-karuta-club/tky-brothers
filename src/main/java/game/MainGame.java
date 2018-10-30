@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import block.Floor;
 import block.Timer;
+import config.PlayerConfig;
 import config.WindowConfig;
 import service.EnemyService;
 import service.FloorService;
@@ -90,14 +91,14 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
-        playerList.forEach(player -> {
-            player.action(keyEvent);
-        });
+        PlayerConfig.keyPressed(keyEvent);
     }
 
     @Override
     public void keyTyped(KeyEvent keyEvent) {}
 
     @Override
-    public void keyReleased(KeyEvent keyEvent) {}
+    public void keyReleased(KeyEvent keyEvent) {
+        PlayerConfig.keyReleased(keyEvent);
+    }
 }
