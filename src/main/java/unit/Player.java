@@ -2,7 +2,6 @@ package unit;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 import config.PlayerConfig;
 import config.WindowConfig;
@@ -52,6 +51,16 @@ public class Player extends Unit {
      */
     @Override
     public void status() {
+        if (PlayerConfig.isPressing(moveLeftButton)) {
+            xPoint -= move;
+        }
+        if (PlayerConfig.isPressing(moveRightButton)) {
+            xPoint += move;
+        }
+        if (PlayerConfig.isPressing(moveJumpButton)) {
+            jumpFlagInit();
+            jumpFlag = true;
+        }
         if (xPoint > WindowConfig.xSize) {
             xPoint = 0;
         }
@@ -59,31 +68,15 @@ public class Player extends Unit {
             xPoint = WindowConfig.xSize;
         }
         if (yPoint > WindowConfig.ySize) {
-            yPoint = 0;
+            yPoint = WindowConfig.ySize;
         }
         if (yPoint < 0) {
             addGravity();
-            setJumpFlag(false);
-            yPoint = WindowConfig.ySize;
+            // setJumpFlag(false);
+            // yPoint = WindowConfig.ySize;
+            yPoint = 0;
         }
         jump();
-    }
-
-    /**
-     * KeyPressedメソッドで呼び出すことでオブジェクトを移動できるようにするメソッド
-     * @param event
-     */
-    public void action(KeyEvent event) {
-        if (event.getKeyCode() == moveLeftButton) {
-            xPoint -= move;
-        }
-        if (event.getKeyCode() == moveRightButton) {
-            xPoint += move;
-        }
-        if (event.getKeyCode() == moveJumpButton) {
-            jumpFlagInit();
-            jumpFlag = true;
-        }
     }
 
     /**
