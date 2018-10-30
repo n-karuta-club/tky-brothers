@@ -20,6 +20,8 @@ public class EnemyService {
     public static void initialize() {
         addEnemy(100, EnemyConfig.yPoint);
         addEnemy(400, EnemyConfig.yPoint);
+        addEnemy(500, EnemyConfig.yPoint);
+        addEnemy(600, EnemyConfig.yPoint);
     }
 
     /**

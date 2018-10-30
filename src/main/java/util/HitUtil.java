@@ -1,6 +1,7 @@
 package util;
 
 import block.Floor;
+import config.PlayerConfig;
 import unit.Player;
 
 public class HitUtil {
@@ -11,7 +12,7 @@ public class HitUtil {
      * @return
      */
     public static boolean isXPoint(Player player, Floor floor) {
-        if (player.getXPoint() > floor.getXPoint() && player.getXPoint() <= floor.getXPoint() + floor.getXSize()) {
+        if (player.getXPoint() > floor.getXPoint() - PlayerConfig.xSize && player.getXPoint() <= floor.getXPoint() + floor.getXSize()) {
             return false;
         }
         return true;

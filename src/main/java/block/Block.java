@@ -3,6 +3,6 @@ package block;
 import java.awt.Graphics;
 
 abstract class Block {
-    abstract void print(Graphics graphics);
-    abstract void status();
+    abstract public void print(Graphics graphics);
+    abstract public void status();
 }

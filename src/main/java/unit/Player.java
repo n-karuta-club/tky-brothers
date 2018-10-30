@@ -62,6 +62,8 @@ public class Player extends Unit {
             yPoint = 0;
         }
         if (yPoint < 0) {
+            addGravity();
+            setJumpFlag(false);
             yPoint = WindowConfig.ySize;
         }
         jump();
