@@ -62,6 +62,8 @@ public class Player extends Unit {
             yPoint = 0;
         }
         if (yPoint < 0) {
+            addGravity();
+            setJumpFlag(false);
             yPoint = WindowConfig.ySize;
         }
         jump();
@@ -119,7 +121,7 @@ public class Player extends Unit {
     }
 
     /**
-     * runメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
+     * statusメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
      */
     private void jump() {
         if (!jumpFlag) {
@@ -130,10 +132,5 @@ public class Player extends Unit {
         moveYPoint = (yPoint - previewYPoint);
         yPoint += moveYPoint;
         previewYPoint = yTmp;
-    }
-
-    public void reverseMoveYPoint() {
-        System.out.println("reverse");
-        this.moveYPoint *= -1;
     }
 }

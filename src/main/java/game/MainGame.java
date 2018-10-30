@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import block.Floor;
+import block.Timer;
+import config.WindowConfig;
 import service.EnemyService;
 import service.FloorService;
 import service.MapService;
@@ -22,13 +24,13 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private ArrayList<Player> playerList = PlayerService.playerList;
     private ArrayList<Floor>  floorList = FloorService.floorList;
     private ArrayList<Enemy> enemyList = EnemyService.enemyList;
+    private Timer timer = new Timer();
 
     public MainGame(GameWindow gameWindow) {
         // this.gameWindow = gameWindow;
         startThread();
         gameWindow.addKeyListener(this);
         setFocusable(true);
-        System.out.println("hoge");
     }
 
     /**
@@ -57,9 +59,11 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 enemy.status();
             });
 
+            timer.status();
+
             repaint();
             try {
-                Thread.sleep(50);
+                Thread.sleep(WindowConfig.sleep);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -81,6 +85,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         enemyList.forEach(enemy -> {
             enemy.print(graphics);
         });
+        timer.print(graphics);
     }
 
     @Override
