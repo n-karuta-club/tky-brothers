@@ -3,9 +3,10 @@ package block;
 import java.awt.Graphics;
 
 import config.WindowConfig;
-
+import lombok.Getter;
+@Getter
 public class Timer extends Block {
-    private int nowTime = WindowConfig.gameTime;
+    private static int nowTime = WindowConfig.gameTime;
     private int count = 0;
 
     @Override

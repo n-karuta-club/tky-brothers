@@ -14,7 +14,7 @@ public class EnemyService {
      * Enemyをリストに追加するメソッド
      */
     public static void addEnemy(int xPoint, int yPoint) {
-        enemyList.add(new Enemy(xPoint, yPoint, createDirection()));
+        enemyList.add(new Enemy(xPoint, yPoint, createDirection(), false, 0, 0));
     }
 
     public static void initialize() {
