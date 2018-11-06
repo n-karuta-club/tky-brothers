@@ -20,7 +20,7 @@ import unit.Player;
 
 public class MainGame extends JPanel implements Runnable, KeyListener {
     private Thread thread = null;
-    // private GameWindow gameWindow;
+    private GameWindow gameWindow;
 
     private ArrayList<Player> playerList = PlayerService.playerList;
     private ArrayList<Floor>  floorList = FloorService.floorList;
@@ -28,7 +28,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private Timer timer = new Timer();
 
     public MainGame(GameWindow gameWindow) {
-        // this.gameWindow = gameWindow;
+        this.gameWindow = gameWindow;
         startThread();
         gameWindow.addKeyListener(this);
         setFocusable(true);
@@ -63,6 +63,9 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
 
             timer.status();
 
+            if(timer.stateNowTime()) {
+            	gameWindow.change(new ResultGame(gameWindow));
+            }
             repaint();
             try {
                 Thread.sleep(WindowConfig.sleep);

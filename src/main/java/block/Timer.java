@@ -27,7 +27,7 @@ public class Timer extends Block {
     }
 
     public boolean stateNowTime() {
-        if (nowTime <= 0) {
+        if (nowTime < 0) {
             return true;
         }
         return false;
