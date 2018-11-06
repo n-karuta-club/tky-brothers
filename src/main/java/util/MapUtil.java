@@ -12,7 +12,7 @@ public class MapUtil {
      * @return
      */
     public static boolean isPlayerGravity(Player player, Floor floor) {
-        if (HitUtil.isYPoint(player, floor) || HitUtil.isXPoint(player, floor)) {
+        if (HitUtil.isPlayerYPoint(player, floor) || HitUtil.isPlayerXPoint(player, floor)) {
             return true;
         }
         return false;
@@ -30,6 +30,13 @@ public class MapUtil {
         return false;
     }
 
+    /**
+     * enemyインスタンスに重力を与えるか与えないか判定するメソッド
+     *
+     * @param enemy
+     * @param floor
+     * @return
+     */
     public static boolean isEnemyGravity(Enemy enemy, Floor floor) {
         if (HitUtil.isEnemyYPoint(enemy, floor) || HitUtil.isEnemyXPoint(enemy, floor)) {
             return true;
@@ -38,7 +45,7 @@ public class MapUtil {
     }
 
     /**
-     * playerが上昇中であった場合下降する処理に置き換えるメソッド
+     * enemyが上昇中であった場合下降する処理に置き換えるメソッド
      * @param enemy
      */
     public static boolean clashEnemyFloor(Enemy enemy) {

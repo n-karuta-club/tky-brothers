@@ -2,8 +2,10 @@ package unit;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 import config.EnemyConfig;
+import config.FloorConfig;
 import config.WindowConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,16 +14,14 @@ import lombok.val;
 @Getter
 @AllArgsConstructor
 public class Enemy extends Unit {
-
     private int xPoint;
     private int yPoint;
     private String moveDirection;
     private boolean jumpFlag;
- // 1つ前のフレームのy座標
+    // 1つ前のフレームのy座標
     private int previewYPoint;
     // Y軸の移動距離
     private int moveYPoint;
-
 
     @Override
     public void print(Graphics graphics) {
@@ -31,7 +31,8 @@ public class Enemy extends Unit {
 
     @Override
     public void status() {
-    	val rand = Math.random();
+        val random = new Random();
+        val rand = random.nextInt(10);
         switch (moveDirection) {
         case "left":
             xPoint += EnemyConfig.move;
@@ -41,35 +42,40 @@ public class Enemy extends Unit {
             break;
         }
 
+        if (rand == 0) {
+            jumpFlagInit();
+            jumpFlag = true;
+        }
+
         if (xPoint > WindowConfig.xSize) {
             xPoint = 0;
         }
         if (xPoint < 0) {
             xPoint = WindowConfig.xSize;
         }
-        if  (rand %2 == 0) {
-        	jumpFlagInit();
-        	jumpFlag = true;
+
+        if (yPoint > WindowConfig.ySize) {
+            yPoint = WindowConfig.ySize - (FloorConfig.ySize + EnemyConfig.ySize);
         }
-        /*if( %5 == 0) {
-        	jumpFlagInit();
-        	jumpFlag = true;
-        }*/
-        if (yPoint < 0) {
-            addGravity();
-            //setJumpFlag(false);
-            // yPoint = WindowConfig.ySize;
-            yPoint = 0;
-        }
+
+        //  if (yPoint < 0) {
+        //      addGravity();
+        //      //setJumpFlag(false);
+        //      // yPoint = WindowConfig.ySize;
+        //      yPoint = 0;
+        //  }
         jump();
     }
 
     public void addGravity() {
+        System.out.println("===================");
         this.yPoint += WindowConfig.gravity;
     }
 
     public void setJumpFlag(boolean flag) {
         jumpFlag = flag;
+        moveYPoint = 0;
+        previewYPoint = 0;
     }
 
     /**
@@ -79,7 +85,6 @@ public class Enemy extends Unit {
     public void setYPoint(int yPoint) {
         this.yPoint = yPoint;
     }
-
 
     private void jumpFlagInit() {
         if (jumpFlag) {
@@ -102,7 +107,5 @@ public class Enemy extends Unit {
         yPoint += moveYPoint;
         previewYPoint = yTmp;
     }
-
-
 
 }

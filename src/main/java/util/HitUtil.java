@@ -13,7 +13,7 @@ public class HitUtil {
      * @param floor
      * @return
      */
-    public static boolean isXPoint(Player player, Floor floor) {
+    public static boolean isPlayerXPoint(Player player, Floor floor) {
         if (player.getXPoint() > floor.getXPoint() - PlayerConfig.xSize && player.getXPoint() <= floor.getXPoint() + floor.getXSize()) {
             return false;
         }
@@ -26,7 +26,7 @@ public class HitUtil {
      * @param floor
      * @return
      */
-    public static boolean isYPoint(Player player, Floor floor) {
+    public static boolean isPlayerYPoint(Player player, Floor floor) {
         if (player.getYPoint() > floor.getYPoint() - floor.getYSize() && player.getYPoint() <= floor.getYPoint()) {
             return false;
         }
