@@ -7,7 +7,7 @@ import config.PlayerConfig;
 import unit.Player;
 
 public class PlayerService {
-    public static ArrayList<Player> playerList = new ArrayList<>();
+    public final static ArrayList<Player> playerList = new ArrayList<>();
 
     public static void addFirstPlayer() {
         playerList.add(new Player(PlayerConfig.xPoint - 100, PlayerConfig.yPoint, PlayerConfig.move, PlayerConfig.life,
@@ -21,5 +21,6 @@ public class PlayerService {
 
     public static void resetList() {
     	playerList.clear();
+
     }
 }
