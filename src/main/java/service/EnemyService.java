@@ -15,9 +15,15 @@ public class EnemyService {
      */
     public static void addEnemy(int xPoint, int yPoint) {
         yPoint = 0;
+        if (enemyList.size() > EnemyConfig.MaxEnemy) {
+            return;
+        }
         enemyList.add(new Enemy(xPoint, yPoint, createDirection(), false, 0, 0));
     }
 
+    /**
+     *  初期化
+     */
     public static void initialize() {
         addEnemy(100, EnemyConfig.yPoint);
         addEnemy(400, EnemyConfig.yPoint);
@@ -41,7 +47,7 @@ public class EnemyService {
     }
 
     public static void resetList() {
-    	enemyList.clear();
+        enemyList.clear();
 
     }
 }

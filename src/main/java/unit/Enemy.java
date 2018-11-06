@@ -2,7 +2,12 @@ package unit;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 import config.EnemyConfig;
 import config.WindowConfig;
@@ -25,8 +30,10 @@ public class Enemy extends Unit {
 
     @Override
     public void print(Graphics graphics) {
-        graphics.setColor(Color.RED);
-        graphics.fillOval(xPoint, yPoint, EnemyConfig.xSize, EnemyConfig.ySize);
+        //  graphics.setColor(Color.RED);
+        //  graphics.fillOval(xPoint, yPoint, EnemyConfig.xSize, EnemyConfig.ySize);
+        val bufferedImage = getImageGraphics();
+        graphics.drawImage(bufferedImage, xPoint, yPoint, EnemyConfig.xSize, EnemyConfig.ySize, Color.WHITE, null);
     }
 
     @Override
@@ -56,11 +63,11 @@ public class Enemy extends Unit {
         }
 
         if (yPoint < 0) {
-             addGravity();
-             // setJumpFlag(false);
-             // yPoint = WindowConfig.ySize;
-             yPoint = 0;
-         }
+            addGravity();
+            // setJumpFlag(false);
+            // yPoint = WindowConfig.ySize;
+            yPoint = 0;
+        }
 
         if (yPoint > WindowConfig.ySize) {
             yPoint = WindowConfig.ySize;
@@ -114,6 +121,24 @@ public class Enemy extends Unit {
      */
     public void setYPoint(int yPoint) {
         this.yPoint = yPoint;
+    }
+
+    private BufferedImage getImageGraphics() {
+        BufferedImage bufferedImage = null;
+
+        try {
+            if (moveDirection == "left") {
+                bufferedImage = ImageIO
+                        .read(new File(System.getProperty("user.dir") + "/src/main/images/YakaraLeft.jpg"));
+            } else {
+                bufferedImage = ImageIO
+                        .read(new File(System.getProperty("user.dir") + "/src/main/images/YakaraRight.jpg"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return bufferedImage;
     }
 
 }

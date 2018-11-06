@@ -20,11 +20,16 @@ public class FloorService {
      * floorの初期配置を行うメソッド
      */
     public static void initialize() {
+        // 一番下の床
         addFloor(-10, WindowConfig.ySize - 32, WindowConfig.xSize + 100, FloorConfig.ySize);
-        addFloor(-10, WindowConfig.ySize - 170, WindowConfig.xSize / 2, FloorConfig.ySize);
-        addFloor(100, WindowConfig.ySize - 300, WindowConfig.xSize / 2, FloorConfig.ySize);
-        addFloor(700, WindowConfig.ySize - 300, WindowConfig.xSize / 2, FloorConfig.ySize);
-        addFloor(100, WindowConfig.ySize - 430, WindowConfig.xSize / 3, FloorConfig.ySize);
-        addFloor(200, WindowConfig.ySize - 500, WindowConfig.xSize / 2, FloorConfig.ySize);
+
+        // その他の床
+        addFloor(-150, WindowConfig.ySize - 460, WindowConfig.xSize / 2, FloorConfig.ySize);
+        addFloor(600, WindowConfig.ySize - 460, WindowConfig.xSize / 2, FloorConfig.ySize);
+        addFloor(200, WindowConfig.ySize - 330, WindowConfig.xSize / 2, FloorConfig.ySize);
+        addFloor(-150, WindowConfig.ySize - 200, WindowConfig.xSize / 2, FloorConfig.ySize);
+        addFloor(600, WindowConfig.ySize - 200, WindowConfig.xSize / 2, FloorConfig.ySize);
+        // addFloor(100, WindowConfig.ySize - 430, WindowConfig.xSize / 3, FloorConfig.ySize);
+        // addFloor(200, WindowConfig.ySize - 500, WindowConfig.xSize / 2, FloorConfig.ySize);
     }
 }
