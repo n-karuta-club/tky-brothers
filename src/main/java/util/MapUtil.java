@@ -1,6 +1,7 @@
 package util;
 
 import block.Floor;
+import unit.Enemy;
 import unit.Player;
 
 public class MapUtil {
@@ -11,7 +12,7 @@ public class MapUtil {
      * @return
      */
     public static boolean isPlayerGravity(Player player, Floor floor) {
-        if (HitUtil.isYPoint(player, floor) || HitUtil.isXPoint(player, floor)) {
+        if (HitUtil.isPlayerYPoint(player, floor) || HitUtil.isPlayerXPoint(player, floor)) {
             return true;
         }
         return false;
@@ -24,6 +25,21 @@ public class MapUtil {
     public static boolean clashPlayerFloor(Player player) {
         if (player.getMoveYPoint() < 0) {
             // player.reverseMoveYPoint();
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean clashEnemyFloor(Enemy enemy) {
+        if (enemy.getMoveYPoint() < 0) {
+            // player.reverseMoveYPoint();
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isEnemyGravity(Enemy enemy, Floor floor) {
+        if (HitUtil.isEnemyYPoint(enemy, floor) || HitUtil.isEnemyXPoint(enemy, floor)) {
             return true;
         }
         return false;

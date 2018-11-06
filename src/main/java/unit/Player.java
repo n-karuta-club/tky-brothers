@@ -67,15 +67,16 @@ public class Player extends Unit {
         if (xPoint < 0) {
             xPoint = WindowConfig.xSize;
         }
+
         if (yPoint > WindowConfig.ySize) {
             yPoint = WindowConfig.ySize;
         }
-        if (yPoint < 0) {
-            addGravity();
-            // setJumpFlag(false);
-            // yPoint = WindowConfig.ySize;
-            yPoint = 0;
-        }
+        //  if (yPoint < 0) {
+        //      addGravity();
+        //      // setJumpFlag(false);
+        //      // yPoint = WindowConfig.ySize;
+        //      yPoint = 0;
+        //  }
         jump();
     }
 
