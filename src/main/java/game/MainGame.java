@@ -58,6 +58,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
             });
             enemyList.forEach(enemy -> {
                 enemy.status();
+                MapService.addGravityToEnemy(enemy, floorList);
             });
 
             timer.status();
