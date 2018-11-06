@@ -23,12 +23,14 @@ public class Timer extends Block {
             nowTime -= 1;
             // 敵を１秒に1体増やす処理
             EnemyService.addEnemy(300, 100);
+
         }
     }
 
     public boolean stateNowTime() {
         if (nowTime < 0) {
             return true;
+
         }
         return false;
     }
