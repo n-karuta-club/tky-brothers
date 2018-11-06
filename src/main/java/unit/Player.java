@@ -77,6 +77,7 @@ public class Player extends Unit {
             yPoint = 0;
         }
         jump();
+
     }
 
     /**

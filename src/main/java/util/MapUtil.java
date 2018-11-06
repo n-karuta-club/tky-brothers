@@ -1,6 +1,7 @@
 package util;
 
 import block.Floor;
+import unit.Enemy;
 import unit.Player;
 
 public class MapUtil {
@@ -28,4 +29,24 @@ public class MapUtil {
         }
         return false;
     }
+
+    public static boolean isEnemyGravity(Enemy enemy, Floor floor) {
+        if (HitUtil.isEnemyYPoint(enemy, floor) || HitUtil.isEnemyXPoint(enemy, floor)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * playerが上昇中であった場合下降する処理に置き換えるメソッド
+     * @param enemy
+     */
+    public static boolean clashEnemyFloor(Enemy enemy) {
+        if (enemy.getMoveYPoint() < 0) {
+            // player.reverseMoveYPoint();
+            return true;
+        }
+        return false;
+    }
+
 }
