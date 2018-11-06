@@ -23,7 +23,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private GameWindow gameWindow;
 
     private ArrayList<Player> playerList = PlayerService.playerList;
-    private ArrayList<Floor>  floorList = FloorService.floorList;
+    private ArrayList<Floor> floorList = FloorService.floorList;
     private ArrayList<Enemy> enemyList = EnemyService.enemyList;
     private Timer timer = new Timer();
 
@@ -49,35 +49,30 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
      */
     @Override
     public void run() {
+        Thread currentThread = Thread.currentThread();
 
-
-
-
-    	Thread currentThread = Thread.currentThread();
-    	while (thread == currentThread) {
-   			playerList.forEach(player -> {
-   				player.status();
-   				MapService.addGravityToPlayer(player, floorList);
-   			});
-   			enemyList.forEach(enemy -> {
-    			enemy.status();
-    				MapService.addGravityToEnemy(enemy, floorList);
-    		});
-    		timer.status();
-    		if(timer.stateNowTime()) {
-    			gameWindow.change(new ResultGame(gameWindow));
-    			break;
-    			}
-   			repaint();
-   			try {
-				Thread.sleep(WindowConfig.sleep);
-    			} catch (InterruptedException e) {
-    				e.printStackTrace();
-    			}
-    		}
-
+        while (thread == currentThread) {
+            playerList.forEach(player -> {
+                player.status();
+                MapService.addGravityToPlayer(player, floorList);
+            });
+            enemyList.forEach(enemy -> {
+                enemy.status();
+                MapService.addGravityToEnemy(enemy, floorList);
+            });
+            timer.status();
+            if (timer.stateNowTime()) {
+                gameWindow.change(new ResultGame(gameWindow));
+                break;
+            }
+            repaint();
+            try {
+                Thread.sleep(WindowConfig.sleep);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
-
 
     /**
      * オブジェクトの描写
@@ -103,7 +98,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent keyEvent) {}
+    public void keyTyped(KeyEvent keyEvent) {
+    }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {

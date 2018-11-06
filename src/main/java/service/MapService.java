@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import block.Floor;
 import config.FloorConfig;
-import config.PlayerConfig;
-import config.WindowConfig;
 import lombok.val;
 import unit.Enemy;
 import unit.Player;
@@ -56,11 +54,6 @@ public class MapService {
                 player.setJumpFlag(false);
             }
         });
-
-        // 一番下の地面に着地しておく用
-        if (player.getYPoint() >= WindowConfig.ySize - PlayerConfig.ySize * 2) {
-            player.setJumpFlag(false);
-        }
     }
 
     /**
@@ -106,10 +99,5 @@ public class MapService {
                 enemy.setJumpFlag(false);
             }
         });
-
-        // 一番下の地面に着地しておく用
-        if (enemy.getYPoint() >= WindowConfig.ySize - PlayerConfig.ySize * 2) {
-            enemy.setJumpFlag(false);
-        }
     }
 }

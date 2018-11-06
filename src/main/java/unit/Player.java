@@ -2,11 +2,17 @@ package unit;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import config.PlayerConfig;
 import config.WindowConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.val;
 
 @Getter
 @AllArgsConstructor
@@ -33,6 +39,8 @@ public class Player extends Unit {
     private int previewYPoint;
     // Y軸の移動距離
     private int moveYPoint;
+    // プレイヤー番号
+    private int playerNumber;
 
     /**
      * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
@@ -40,8 +48,10 @@ public class Player extends Unit {
      */
     @Override
     public void print(Graphics graphics) {
-        graphics.setColor(Color.GREEN);
-        graphics.fillOval(xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize);
+        //  graphics.setColor(Color.GREEN);
+        //  graphics.fillOval(xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize);
+        val bufferedImage = getImageGraphics();
+        graphics.drawImage(bufferedImage, xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize, Color.WHITE, null);
     }
 
     /**
@@ -53,9 +63,11 @@ public class Player extends Unit {
     public void status() {
         if (PlayerConfig.isPressing(moveLeftButton)) {
             xPoint -= move;
+            lastMove = moveLeftButton;
         }
         if (PlayerConfig.isPressing(moveRightButton)) {
             xPoint += move;
+            lastMove = moveRightButton;
         }
         if (PlayerConfig.isPressing(moveJumpButton)) {
             jumpFlagInit();
@@ -71,12 +83,7 @@ public class Player extends Unit {
         if (yPoint > WindowConfig.ySize) {
             yPoint = WindowConfig.ySize;
         }
-        //  if (yPoint < 0) {
-        //      addGravity();
-        //      // setJumpFlag(false);
-        //      // yPoint = WindowConfig.ySize;
-        //      yPoint = 0;
-        //  }
+
         jump();
     }
 
@@ -126,5 +133,42 @@ public class Player extends Unit {
         moveYPoint = (yPoint - previewYPoint);
         yPoint += moveYPoint;
         previewYPoint = yTmp;
+    }
+
+    /**
+     * 表示する画像を決めるメソッド
+     *
+     * @return
+     */
+    private BufferedImage getImageGraphics() {
+        BufferedImage bufferedImage = null;
+
+        if (playerNumber == 1) {
+            try {
+                if (lastMove == moveLeftButton) {
+                    bufferedImage = ImageIO
+                            .read(new File(System.getProperty("user.dir") + "/src/main/images/QLeft.jpg"));
+                } else {
+                    bufferedImage = ImageIO
+                            .read(new File(System.getProperty("user.dir") + "/src/main/images/QRight.jpg"));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                if (lastMove == moveLeftButton) {
+                    bufferedImage = ImageIO
+                            .read(new File(System.getProperty("user.dir") + "/src/main/images/TLeft.jpg"));
+                } else {
+                    bufferedImage = ImageIO
+                            .read(new File(System.getProperty("user.dir") + "/src/main/images/TRight.jpg"));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return bufferedImage;
     }
 }
