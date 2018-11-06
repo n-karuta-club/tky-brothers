@@ -49,31 +49,35 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
      */
     @Override
     public void run() {
-        Thread currentThread = Thread.currentThread();
 
-        while (thread == currentThread) {
-            playerList.forEach(player -> {
-                player.status();
-                MapService.addGravityToPlayer(player, floorList);
-            });
-            enemyList.forEach(enemy -> {
-                enemy.status();
-                MapService.addGravityToEnemy(enemy, floorList);
-            });
 
-            timer.status();
 
-            if(timer.stateNowTime()) {
-            	gameWindow.change(new ResultGame(gameWindow));
-            }
-            repaint();
-            try {
-                Thread.sleep(WindowConfig.sleep);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+
+    	Thread currentThread = Thread.currentThread();
+    	while (thread == currentThread) {
+   			playerList.forEach(player -> {
+   				player.status();
+   				MapService.addGravityToPlayer(player, floorList);
+   			});
+   			enemyList.forEach(enemy -> {
+    			enemy.status();
+    				MapService.addGravityToEnemy(enemy, floorList);
+    		});
+    		timer.status();
+    		if(timer.stateNowTime()) {
+    			gameWindow.change(new ResultGame(gameWindow));
+    			break;
+    			}
+   			repaint();
+   			try {
+				Thread.sleep(WindowConfig.sleep);
+    			} catch (InterruptedException e) {
+    				e.printStackTrace();
+    			}
+    		}
+
     }
+
 
     /**
      * オブジェクトの描写

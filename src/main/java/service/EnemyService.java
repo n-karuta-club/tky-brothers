@@ -8,7 +8,7 @@ import lombok.val;
 import unit.Enemy;
 
 public class EnemyService {
-    public static final ArrayList<Enemy> enemyList = new ArrayList<>();
+    public static ArrayList<Enemy> enemyList = new ArrayList<>();
 
     /**
      * Enemyをリストに追加するメソッド
@@ -40,4 +40,8 @@ public class EnemyService {
         }
     }
 
+    public static void resetList() {
+    	enemyList.clear();
+
+    }
 }

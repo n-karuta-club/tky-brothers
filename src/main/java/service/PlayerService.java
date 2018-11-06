@@ -7,7 +7,7 @@ import config.PlayerConfig;
 import unit.Player;
 
 public class PlayerService {
-    public static final ArrayList<Player> playerList = new ArrayList<>();
+    public static ArrayList<Player> playerList = new ArrayList<>();
 
     public static void addFirstPlayer() {
         playerList.add(new Player(PlayerConfig.xPoint - 100, PlayerConfig.yPoint, PlayerConfig.move, PlayerConfig.life,
@@ -17,5 +17,9 @@ public class PlayerService {
     public static void addSecondPlayer() {
         playerList.add(new Player(PlayerConfig.xPoint + 100, PlayerConfig.yPoint, PlayerConfig.move, PlayerConfig.life,
                 KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_W, KeyEvent.VK_D, false, 0, 0));
+    }
+
+    public static void resetList() {
+    	playerList.clear();
     }
 }
