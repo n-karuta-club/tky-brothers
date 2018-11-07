@@ -12,19 +12,17 @@ import service.PlayerService;
 
 public class ResultGame extends JPanel{
 
-	public ResultGame(GameWindow gameWindow) {
-		setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
-		 val button1 = new JButton("タイトルへ戻る");
-		 button1.addActionListener(event ->{
-			 PlayerService.resetList();
-			EnemyService.resetList();
-			
-			 gameWindow.change(new StartGame(gameWindow));
+    public ResultGame(GameWindow gameWindow) {
+         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
+         val button1 = new JButton("タイトルへ戻る");
 
-		 });
-		 add(button1);
+         button1.addActionListener(event -> {
+             PlayerService.resetList();
+             EnemyService.resetList();
+             gameWindow.change(new StartGame(gameWindow));
+         });
 
-
-	}
+         add(button1);
+    }
 
 }

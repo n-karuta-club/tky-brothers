@@ -136,6 +136,13 @@ public class Player extends Unit {
     }
 
     /**
+     * ダメージ処理
+     */
+    public void damage() {
+        life--;
+    }
+
+    /**
      * statusメソッドで呼び出すことでオブジェクトをジャンプできるようにするメソッド
      */
     private void jump() {
