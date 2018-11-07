@@ -34,8 +34,8 @@ public class MapService {
                 break;
             }
         }
-        System.out.println(player.getPreviewYPoint());
-        System.out.println(player.isJumpFlag());
+        // System.out.println(player.getPreviewYPoint());
+        // System.out.println(player.isJumpFlag());
 
         // playerに重力を与えるか与えないかの処理
         // 与えなければplayerのjumpFlagをfalseにする
@@ -49,7 +49,7 @@ public class MapService {
 
         // playerが上下運動をしながら待機している時はjumpFlagをfalseにする
         floorList.forEach(floor -> {
-            System.out.println(floor.getYPoint() - floor.getYSize() + ":" + (player.getYPoint() + 1));
+            // System.out.println(floor.getYPoint() - floor.getYSize() + ":" + (player.getYPoint() + 1));
             if (floor.getYPoint() - floor.getYSize() == (player.getYPoint() - 1)) {
                 player.setJumpFlag(false);
             }
@@ -79,8 +79,8 @@ public class MapService {
                 break;
             }
         }
-        System.out.println(enemy.getPreviewYPoint());
-        System.out.println(enemy.isJumpFlag());
+        // System.out.println(enemy.getPreviewYPoint());
+        // System.out.println(enemy.isJumpFlag());
 
         // playerに重力を与えるか与えないかの処理
         // 与えなければplayerのjumpFlagをfalseにする
@@ -94,7 +94,7 @@ public class MapService {
 
         // playerが上下運動をしながら待機している時はjumpFlagをfalseにする
         floorList.forEach(floor -> {
-            System.out.println(floor.getYPoint() - floor.getYSize() + ":" + (enemy.getYPoint() + 1));
+            // System.out.println(floor.getYPoint() - floor.getYSize() + ":" + (enemy.getYPoint() + 1));
             if (floor.getYPoint() - floor.getYSize() == (enemy.getYPoint() - 1)) {
                 enemy.setJumpFlag(false);
             }

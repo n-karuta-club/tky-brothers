@@ -11,11 +11,15 @@ import block.Floor;
 import block.Timer;
 import config.PlayerConfig;
 import config.WindowConfig;
+import lombok.val;
 import service.EnemyService;
+import service.FireService;
 import service.FloorService;
+import service.HitService;
 import service.MapService;
 import service.PlayerService;
 import unit.Enemy;
+import unit.Fire;
 import unit.Player;
 
 public class MainGame extends JPanel implements Runnable, KeyListener {
@@ -25,6 +29,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private ArrayList<Player> playerList = PlayerService.playerList;
     private ArrayList<Floor> floorList = FloorService.floorList;
     private ArrayList<Enemy> enemyList = EnemyService.enemyList;
+    private ArrayList<Fire> fireList = FireService.fireList;
     private Timer timer = new Timer();
 
     public MainGame(GameWindow gameWindow) {
@@ -60,6 +65,9 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 enemy.status();
                 MapService.addGravityToEnemy(enemy, floorList);
             });
+            fireList.forEach(fire -> {
+                fire.status();
+            });
             timer.status();
             if (timer.stateNowTime()) {
                 gameWindow.change(new ResultGame(gameWindow));
@@ -89,6 +97,20 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         enemyList.forEach(enemy -> {
             enemy.print(graphics);
         });
+        fireList.forEach(fire -> {
+            fire.print(graphics);
+        });
+
+        for (int index = 0; index < fireList.size(); index++) {
+            val fire = fireList.get(index);
+            if (HitService.isHitFireToWindow(fire)) {
+                FireService.removeFire(index);
+            }
+            if (HitService.isHitFireToEnemy(fire, enemyList)) {
+                System.out.println("<<<<=========");
+                FireService.removeFire(index);
+            }
+        }
         timer.print(graphics);
     }
 

@@ -3,6 +3,7 @@ package block;
 import java.awt.Graphics;
 
 import config.WindowConfig;
+import service.EnemyService;
 
 public class Timer extends Block {
     private int nowTime = WindowConfig.gameTime;
@@ -21,7 +22,7 @@ public class Timer extends Block {
             count = 0;
             nowTime -= 1;
             // 敵を１秒に1体増やす処理
-            // EnemyService.addEnemy(300, 100);
+            EnemyService.addEnemy(300, 100);
         }
     }
 
