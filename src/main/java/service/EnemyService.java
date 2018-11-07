@@ -32,6 +32,22 @@ public class EnemyService {
     }
 
     /**
+     * リストを空にする
+     *
+     */
+    public static void resetList() {
+        enemyList.clear();
+    }
+
+    /**
+     * リストからenemyを削除する
+     * @param index
+     */
+    public static void removeEnemy(int index) {
+        enemyList.remove(index);
+    }
+
+    /**
      * Enemyの進む方向を決めるメソッド
      * @return
      */
@@ -46,8 +62,4 @@ public class EnemyService {
         }
     }
 
-    public static void resetList() {
-        enemyList.clear();
-
-    }
 }

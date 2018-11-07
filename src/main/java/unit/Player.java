@@ -13,6 +13,7 @@ import config.WindowConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.val;
+import service.FireService;
 
 @Getter
 @AllArgsConstructor
@@ -31,6 +32,8 @@ public class Player extends Unit {
     private int moveRightButton;
     // ジャンプするためのボタン
     private int moveJumpButton;
+    // 攻撃用のボタン
+    private int attackButton;
     // 最後に押されたボタン
     private int lastMove;
     // ジャンプしているかしていないかのフラグ
@@ -61,29 +64,40 @@ public class Player extends Unit {
      */
     @Override
     public void status() {
+        // 左移動
         if (PlayerConfig.isPressing(moveLeftButton)) {
             xPoint -= move;
             lastMove = moveLeftButton;
         }
+        // 右移動
         if (PlayerConfig.isPressing(moveRightButton)) {
             xPoint += move;
             lastMove = moveRightButton;
         }
+        // ジャンプ
         if (PlayerConfig.isPressing(moveJumpButton)) {
             jumpFlagInit();
             jumpFlag = true;
         }
+        // 火を吹く
+        if (PlayerConfig.isPressing(attackButton)) {
+            System.out.println("attack");
+            FireService.createFire(xPoint, yPoint, lastMove, playerNumber);
+        }
+
+        // == 画面外に移動した時の処理 ==
         if (xPoint > WindowConfig.xSize) {
             xPoint = 0;
         }
         if (xPoint < 0) {
             xPoint = WindowConfig.xSize;
         }
-
         if (yPoint > WindowConfig.ySize) {
             yPoint = WindowConfig.ySize;
         }
+        // ==========================
 
+        // ジャンプ
         jump();
     }
 
