@@ -115,7 +115,6 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 FireService.removeFire(index);
             }
             if (HitService.isHitFireToEnemy(fire, enemyList)) {
-                System.out.println("<<<<=========");
                 FireService.removeFire(index);
             }
         }

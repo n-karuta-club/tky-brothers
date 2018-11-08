@@ -81,7 +81,6 @@ public class Player extends Unit {
         }
         // 火を吹く
         if (PlayerConfig.isPressing(attackButton)) {
-            System.out.println("attack");
             FireService.createFire(xPoint, yPoint, lastMove, playerNumber);
         }
 
@@ -96,6 +95,13 @@ public class Player extends Unit {
             yPoint = WindowConfig.ySize;
         }
         // ==========================
+
+        if (yPoint < 0) {
+            addGravity();
+            // setJumpFlag(false);
+            // yPoint = WindowConfig.ySize;
+            yPoint = 0;
+        }
 
         // ジャンプ
         jump();

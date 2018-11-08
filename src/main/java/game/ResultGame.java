@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import config.WindowConfig;
 import lombok.val;
 import service.EnemyService;
+import service.FireService;
+import service.FloorService;
 import service.PlayerService;
 
 public class ResultGame extends JPanel{
@@ -19,6 +21,8 @@ public class ResultGame extends JPanel{
          button1.addActionListener(event -> {
              PlayerService.resetList();
              EnemyService.resetList();
+             FireService.resetList();
+             FloorService.resetList();
              gameWindow.change(new StartGame(gameWindow));
          });
 
