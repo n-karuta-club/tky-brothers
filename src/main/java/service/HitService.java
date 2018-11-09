@@ -47,8 +47,10 @@ public class HitService {
      * @return boolean ぶつかっていたらtrue
      */
     public static boolean isHitPlayerToEnemy(Player player, ArrayList<Enemy> enemyList) {
-        for(val enemy: enemyList) {
+        for (int index = 0; index < enemyList.size(); index++) {
+            val enemy = enemyList.get(index);
             if (HitUtil.isHitPlayerToEnemy(player, enemy)) {
+                EnemyService.removeEnemy(index);
                 return true;
             }
         }
