@@ -6,12 +6,13 @@ import config.WindowConfig;
 import lombok.val;
 import unit.Enemy;
 import unit.Fire;
+import unit.Player;
 import util.HitUtil;
 
 public class HitService {
 
     /**
-     * 画面外かどうかの当たり判定
+     * Fireが画面外かどうかの当たり判定
      * @param fire
      * @return boolean 外にでていたらtrue
      */
@@ -23,7 +24,7 @@ public class HitService {
     }
 
     /**
-     * enemyとの当たり判定
+     * fireとenemyとの当たり判定
      * @param fire
      * @param enemyList
      * @return boolean ぶつかっていたらtrue
@@ -33,7 +34,23 @@ public class HitService {
             val enemy = enemyList.get(index);
             if (HitUtil.isHitFireToEnemy(fire, enemy)) {
                 EnemyService.removeEnemy(index);
-                System.out.println("hoge =>>>>>>>>>>>>>>>");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * playerとenemyとの当たり判定
+     * @param fire
+     * @param enemyList
+     * @return boolean ぶつかっていたらtrue
+     */
+    public static boolean isHitPlayerToEnemy(Player player, ArrayList<Enemy> enemyList) {
+        for (int index = 0; index < enemyList.size(); index++) {
+            val enemy = enemyList.get(index);
+            if (HitUtil.isHitPlayerToEnemy(player, enemy)) {
+                EnemyService.removeEnemy(index);
                 return true;
             }
         }

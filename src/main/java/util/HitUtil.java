@@ -76,6 +76,58 @@ public class HitUtil {
     }
 
     /**
+     * playerとenemyの当たり判定
+     *
+     * @param player
+     * @param enemy
+     * @return
+     */
+    public static boolean isHitPlayerToEnemy(Player player, Enemy enemy) {
+        if (isHitPlayerXPoint(player, enemy) && isHitPlayerYPoint(player, enemy)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * playerとenemyの当たり判定(X軸)
+     *
+     * @param player
+     * @param enemy
+     * @return
+     */
+    private static boolean isHitPlayerYPoint(Player player, Enemy enemy) {
+        // 原点座標からの当たり判定
+        if (enemy.getYPoint() < player.getYPoint() && enemy.getYPoint() + EnemyConfig.ySize > player.getYPoint()) {
+            return true;
+        }
+        // 最大値からの当たり判定
+        if (enemy.getYPoint() < player.getYPoint() + FireConfig.ySize && enemy.getYPoint() + EnemyConfig.ySize > player.getYPoint() + FireConfig.ySize) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * playerとenemyの当たり判定(Y軸)
+     *
+     * @param player
+     * @param enemy
+     * @return
+     */
+    private static boolean isHitPlayerXPoint(Player player, Enemy enemy) {
+        // 原点座標からの当たり判定
+        if (enemy.getXPoint() < player.getXPoint() && enemy.getXPoint() + EnemyConfig.xSize > player.getXPoint()) {
+            return true;
+        }
+        // 最大値からの当たり判定
+        if (enemy.getXPoint() < player.getXPoint() + FireConfig.xSize && enemy.getXPoint() + EnemyConfig.xSize > player.getXPoint() + FireConfig.xSize) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * fireとenemyの当たり判定(X軸)
      *
      * @param fire
@@ -112,4 +164,5 @@ public class HitUtil {
         }
         return false;
     }
+
 }

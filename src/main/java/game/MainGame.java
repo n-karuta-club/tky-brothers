@@ -55,12 +55,20 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     @Override
     public void run() {
         Thread currentThread = Thread.currentThread();
+        boolean lifeFlag = false;
 
         while (thread == currentThread) {
-            playerList.forEach(player -> {
+            for (val player: playerList) {
                 player.status();
                 MapService.addGravityToPlayer(player, floorList);
-            });
+                if (HitService.isHitPlayerToEnemy(player, enemyList)) {
+                    player.damage();
+                }
+                if (player.getLife() <= 0) {
+                    lifeFlag = true;
+                    break;
+                }
+            };
             enemyList.forEach(enemy -> {
                 enemy.status();
                 MapService.addGravityToEnemy(enemy, floorList);
@@ -69,7 +77,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 fire.status();
             });
             timer.status();
-            if (timer.stateNowTime()) {
+            if (timer.stateNowTime() || lifeFlag) {
                 gameWindow.change(new ResultGame(gameWindow));
                 break;
             }
@@ -107,7 +115,6 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 FireService.removeFire(index);
             }
             if (HitService.isHitFireToEnemy(fire, enemyList)) {
-                System.out.println("<<<<=========");
                 FireService.removeFire(index);
             }
         }

@@ -2,8 +2,6 @@ package service;
 
 import java.util.ArrayList;
 
-import com.sun.glass.events.KeyEvent;
-
 import config.FireConfig;
 import config.PlayerConfig;
 import lombok.val;
@@ -31,8 +29,16 @@ public class FireService {
         fireList.clear();
     }
 
+    /**
+     * ファイアを追加する
+     *
+     * @param xPoint
+     * @param yPoint
+     * @param lastMove
+     * @param playerNumber
+     */
     public static void createFire(int xPoint, int yPoint, int lastMove, int playerNumber) {
-        val direction = fireDirection(lastMove, playerNumber);
+        val direction = PlayerConfig.playerDirection(lastMove, playerNumber);
         playerFireNum = 0;
 
         fireList.forEach(fire -> {
@@ -46,23 +52,13 @@ public class FireService {
         }
     }
 
+    /**
+     * リストから要素を削除する
+     *
+     * @param index
+     */
     public static void removeFire(int index) {
         fireList.remove(index);
-    }
-
-    private static String fireDirection(int lastMove, int playerNumber) {
-        val direction = playerDirectionKey(playerNumber);
-        if (lastMove == direction) {
-            return "left";
-        }
-        return "right";
-    }
-
-    private static int playerDirectionKey(int playerNumber) {
-        if (playerNumber == 1) {
-            return KeyEvent.VK_LEFT;
-        }
-        return KeyEvent.VK_A;
     }
 
 }
