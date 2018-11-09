@@ -50,7 +50,9 @@ public class HitService {
         for (int index = 0; index < enemyList.size(); index++) {
             val enemy = enemyList.get(index);
             if (HitUtil.isHitPlayerToEnemy(player, enemy)) {
-                EnemyService.removeEnemy(index);
+                if (!player.isDamageFlag()) {
+                    EnemyService.removeEnemy(index);
+                }
                 return true;
             }
         }
