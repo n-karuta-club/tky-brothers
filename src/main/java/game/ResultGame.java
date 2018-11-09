@@ -3,8 +3,10 @@ package game;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import block.Score;
 import config.WindowConfig;
 import lombok.val;
 import service.EnemyService;
@@ -14,11 +16,12 @@ import service.PlayerService;
 
 public class ResultGame extends JPanel{
 
-    public ResultGame(GameWindow gameWindow) {
+    public ResultGame(GameWindow gameWindow, Score score) {
          setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
-         val button1 = new JButton("タイトルへ戻る");
+         val startButton = new JButton("タイトルへ戻る");
+         val scoreLabel = new JLabel(String.valueOf(score.getPoint()));
 
-         button1.addActionListener(event -> {
+         startButton.addActionListener(event -> {
              PlayerService.resetList();
              EnemyService.resetList();
              FireService.resetList();
@@ -26,7 +29,8 @@ public class ResultGame extends JPanel{
              gameWindow.change(new StartGame(gameWindow));
          });
 
-         add(button1);
+         add(startButton);
+         add(scoreLabel);
     }
 
 }

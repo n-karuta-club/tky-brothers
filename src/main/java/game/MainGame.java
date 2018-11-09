@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import block.Floor;
+import block.Score;
 import block.Timer;
 import config.PlayerConfig;
 import config.WindowConfig;
@@ -31,6 +32,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private ArrayList<Enemy> enemyList = EnemyService.enemyList;
     private ArrayList<Fire> fireList = FireService.fireList;
     private Timer timer = new Timer();
+    private Score score = new Score();
 
     public MainGame(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
@@ -78,7 +80,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
             });
             timer.status();
             if (timer.stateNowTime() || lifeFlag) {
-                gameWindow.change(new ResultGame(gameWindow));
+                gameWindow.change(new ResultGame(gameWindow, score));
                 break;
             }
             repaint();
@@ -108,17 +110,18 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         fireList.forEach(fire -> {
             fire.print(graphics);
         });
-
         for (int index = 0; index < fireList.size(); index++) {
             val fire = fireList.get(index);
             if (HitService.isHitFireToWindow(fire)) {
                 FireService.removeFire(index);
             }
             if (HitService.isHitFireToEnemy(fire, enemyList)) {
+                score.breakEnemy();
                 FireService.removeFire(index);
             }
         }
         timer.print(graphics);
+        score.print(graphics);
     }
 
     @Override
