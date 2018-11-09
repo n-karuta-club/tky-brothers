@@ -4,26 +4,22 @@ import java.awt.Graphics;
 
 import config.WindowConfig;
 import service.EnemyService;
+import service.PlayerService;
 
 public class Timer extends Block {
     private int nowTime = WindowConfig.gameTime;
     private int count = 0;
-    private int damageTime = 0;
-    private int damageCount = 0;
-    private boolean damageFlag = false;
 
     /**
-     * Timerを表示する
+     * ゲーム時間を表示する
      */
-    @Override
     public void print(Graphics graphics) {
         graphics.drawString(String.valueOf(nowTime), 50, 50);
     }
 
     /**
-     * Timerの状態を返却する
+     * ゲーム時間の状態を返却する
      */
-    @Override
     public void status() {
         count++;
 
@@ -31,36 +27,9 @@ public class Timer extends Block {
             count = 0;
             nowTime -= 1;
             // 敵を１秒に1体増やす処理
+            damageToPlayer();
             EnemyService.addEnemy(300, 100);
         }
-    }
-
-    /**
-     * 無敵時間を作る
-     * @return
-     */
-    public boolean damageTime() {
-        if (damageFlag) {
-            damageCount++;
-            if (count >= WindowConfig.gameTime) {
-                damageTime++;
-            }
-            if (damageTime >= 3) {
-                damageCount = 0;
-                damageTime = 0;
-                damageFlag = false;
-                return false;
-            }
-            return true;
-        }
-        damageCount = 0;
-        damageTime = 0;
-        damageFlag = false;
-        return false;
-    }
-
-    public void setDamageFlag(boolean damageFlag) {
-        this.damageFlag = damageFlag;
     }
 
     /**
@@ -75,4 +44,15 @@ public class Timer extends Block {
         return false;
     }
 
+    /**
+     * playerの無敵時間を作る
+     * @return
+     */
+    private void damageToPlayer() {
+        PlayerService.playerList.forEach(player -> {
+            if (player.isDamageFlag()) {
+                player.addDamageTime();
+            }
+        });
+    }
 }

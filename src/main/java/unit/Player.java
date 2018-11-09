@@ -44,6 +44,10 @@ public class Player extends Unit {
     private int moveYPoint;
     // プレイヤー番号
     private int playerNumber;
+    // ダメージを受けているか判定するフラグ
+    private boolean damageFlag;
+    // ダメージを受けてから経過した時間を保持する変数
+    private int damageTime;
 
     /**
      * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
@@ -53,6 +57,7 @@ public class Player extends Unit {
     public void print(Graphics graphics) {
         //  graphics.setColor(Color.GREEN);
         //  graphics.fillOval(xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize);
+        graphics.drawString(String.valueOf(life), 100, 50);
         val bufferedImage = getImageGraphics();
         graphics.drawImage(bufferedImage, xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize, Color.WHITE, null);
     }
@@ -131,6 +136,27 @@ public class Player extends Unit {
     }
 
     /**
+     * ダメージ処理
+     */
+    public void damage() {
+        if (!damageFlag) {
+            life--;
+        }
+        damageFlag = true;
+    }
+
+    /**
+     *  ダメージを受けている時間を測定
+     */
+    public void addDamageTime() {
+        damageTime++;
+        if (damageTime > PlayerConfig.damageTime) {
+            damageTime = 0;
+            damageFlag = false;
+        }
+    }
+
+    /**
      * jumpする時に呼び出されるメソッド
      */
     private void jumpFlagInit() {
@@ -139,13 +165,6 @@ public class Player extends Unit {
         }
         previewYPoint = yPoint;
         yPoint -= PlayerConfig.jumpPoint;
-    }
-
-    /**
-     * ダメージ処理
-     */
-    public void damage() {
-        life--;
     }
 
     /**

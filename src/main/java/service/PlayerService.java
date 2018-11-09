@@ -14,7 +14,7 @@ public class PlayerService {
      */
     public static void addFirstPlayer() {
         playerList.add(new Player(PlayerConfig.xPoint - 100, PlayerConfig.yPoint, PlayerConfig.move, PlayerConfig.life,
-                KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, false, 0, 0, 1));
+                KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, false, 0, 0, 1, false, 0));
     }
 
     /**
@@ -22,7 +22,7 @@ public class PlayerService {
      */
     public static void addSecondPlayer() {
         playerList.add(new Player(PlayerConfig.xPoint + 100, PlayerConfig.yPoint, PlayerConfig.move, PlayerConfig.life,
-                KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_W, KeyEvent.VK_S ,KeyEvent.VK_D, false, 0, 0, 2));
+                KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_W, KeyEvent.VK_S ,KeyEvent.VK_D, false, 0, 0, 2, false, 0));
     }
 
     /**
