@@ -32,4 +32,11 @@ public class FloorService {
         // addFloor(100, WindowConfig.ySize - 430, WindowConfig.xSize / 3, FloorConfig.ySize);
         // addFloor(200, WindowConfig.ySize - 500, WindowConfig.xSize / 2, FloorConfig.ySize);
     }
+
+    /**
+     * リストをリセットするメソッド
+     */
+    public static void resetList() {
+        floorList.clear();
+    }
 }

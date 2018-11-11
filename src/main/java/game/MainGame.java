@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import block.Floor;
+import block.Score;
 import block.Timer;
 import config.PlayerConfig;
 import config.WindowConfig;
@@ -31,6 +32,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private ArrayList<Enemy> enemyList = EnemyService.enemyList;
     private ArrayList<Fire> fireList = FireService.fireList;
     private Timer timer = new Timer();
+    private Score score = new Score();
 
     public MainGame(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
@@ -55,12 +57,20 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     @Override
     public void run() {
         Thread currentThread = Thread.currentThread();
+        boolean lifeFlag = false;
 
         while (thread == currentThread) {
-            playerList.forEach(player -> {
+            for (val player: playerList) {
                 player.status();
                 MapService.addGravityToPlayer(player, floorList);
-            });
+                if (HitService.isHitPlayerToEnemy(player, enemyList)) {
+                    player.damage();
+                }
+                if (player.getLife() <= 0) {
+                    lifeFlag = true;
+                    break;
+                }
+            };
             enemyList.forEach(enemy -> {
                 enemy.status();
                 MapService.addGravityToEnemy(enemy, floorList);
@@ -69,8 +79,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 fire.status();
             });
             timer.status();
-            if (timer.stateNowTime()) {
-                gameWindow.change(new ResultGame(gameWindow));
+            if (timer.stateNowTime() || lifeFlag) {
+                gameWindow.change(new ResultGame(gameWindow, score));
                 break;
             }
             repaint();
@@ -100,18 +110,18 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         fireList.forEach(fire -> {
             fire.print(graphics);
         });
-
         for (int index = 0; index < fireList.size(); index++) {
             val fire = fireList.get(index);
             if (HitService.isHitFireToWindow(fire)) {
                 FireService.removeFire(index);
             }
             if (HitService.isHitFireToEnemy(fire, enemyList)) {
-                System.out.println("<<<<=========");
+                score.breakEnemy();
                 FireService.removeFire(index);
             }
         }
         timer.print(graphics);
+        score.print(graphics);
     }
 
     @Override

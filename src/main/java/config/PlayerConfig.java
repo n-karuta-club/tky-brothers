@@ -2,6 +2,8 @@ package config;
 
 import java.awt.event.KeyEvent;
 
+import lombok.val;
+
 public class PlayerConfig {
     public static final int move = 5;
     public static final int life  = 3;
@@ -10,6 +12,7 @@ public class PlayerConfig {
     public static final int xPoint = WindowConfig.xSize / 2;
     public static final int yPoint = WindowConfig.ySize - 64;
     public static final int jumpPoint = 15;
+    public static final int damageTime = 3;
 
     private static boolean isUP = false;
     private static boolean isDOWN = false;
@@ -98,5 +101,32 @@ public class PlayerConfig {
             isD = false;
             break;
         }
+    }
+
+    /**
+     * playerの左移動キーの番号を返却する
+     *
+     * @param playerNumber
+     * @return
+     */
+    public static int playerDirectionKey(int playerNumber) {
+        if (playerNumber == 1) {
+            return KeyEvent.VK_LEFT;
+        }
+        return KeyEvent.VK_A;
+    }
+
+    /**
+     * playerの向いている方向を返却する
+     *
+     * @param playerNumber
+     * @return
+     */
+    public static String playerDirection(int lastMove, int playerNumber) {
+        val direction = playerDirectionKey(playerNumber);
+        if (lastMove == direction) {
+            return "left";
+        }
+        return "right";
     }
 }
