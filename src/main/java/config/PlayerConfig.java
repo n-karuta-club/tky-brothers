@@ -6,7 +6,7 @@ import lombok.val;
 
 public class PlayerConfig {
     public static final int move = 5;
-    public static final int life  = 3;
+    public static final int life = 3;
     public static final int xSize = 64;
     public static final int ySize = 64;
     public static final int xPoint = WindowConfig.xSize / 2;
@@ -22,6 +22,17 @@ public class PlayerConfig {
     private static boolean isS = false;
     private static boolean isA = false;
     private static boolean isD = false;
+
+    public static void setAllKeyFalse() {
+        isUP = false;
+        isDOWN = false;
+        isLEFT = false;
+        isRIGHT = false;
+        isW = false;
+        isS = false;
+        isA = false;
+        isD = false;
+    }
 
     public static boolean isPressing(int iKeyCode) {
         switch (iKeyCode) {

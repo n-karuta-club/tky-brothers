@@ -13,10 +13,6 @@ import block.Score;
 import block.Timer;
 import config.WindowConfig;
 import lombok.val;
-import service.EnemyService;
-import service.FireService;
-import service.FloorService;
-import service.PlayerService;
 import service.ScoreService;
 
 public class ResultGame extends JPanel implements Runnable, KeyListener {
@@ -30,19 +26,16 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
         val startButton = new JButton("タイトルへ戻る");
         val scoreLabel = new JLabel(String.valueOf(score.getPoint()));
         this.gameWindow = gameWindow;
-        timer = new Timer(3, 0, WindowConfig.xSize - 50, WindowConfig.ySize - 50);
-
-        PlayerService.resetList();
-        EnemyService.resetList();
-        FireService.resetList();
-        FloorService.resetList();
+        this.timer = new Timer(3, 0, WindowConfig.xSize - 50, WindowConfig.ySize - 50);
 
         // スコアをサーバに送る
         ScoreService.postScore(score.getPoint());
 
         startButton.addActionListener(event -> {
-            isThisWindow = false;
-            this.gameWindow.change(new StartGame(this.gameWindow));
+            if (isThisWindow) {
+                isThisWindow = false;
+                this.gameWindow.change(new StartGame(this.gameWindow));
+            }
         });
 
         add(startButton);
@@ -114,11 +107,13 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
      * Keyをtypeした時
      */
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     /**
      * Keyを話した時
      */
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 }

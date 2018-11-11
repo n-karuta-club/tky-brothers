@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import config.WindowConfig;
 import lombok.val;
 import service.EnemyService;
+import service.FireService;
 import service.FloorService;
 import service.PlayerService;
 
@@ -25,6 +26,10 @@ public class StartGame extends JPanel implements KeyListener {
     public StartGame(GameWindow gameWindow) {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
         this.gameWindow = gameWindow;
+        PlayerService.resetList();
+        EnemyService.resetList();
+        FireService.resetList();
+        FloorService.resetList();
         val button1 = new JButton("1 player");
         val button2 = new JButton("2 player");
         button1.addActionListener(event -> {
