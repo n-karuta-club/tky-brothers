@@ -15,7 +15,7 @@ import service.PlayerService;
 public class StartGame extends JPanel {
     /**
      * コンストラクタ
-    * @param gameWindow
+     * @param gameWindow
      */
     public StartGame(GameWindow gameWindow) {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
@@ -23,11 +23,11 @@ public class StartGame extends JPanel {
         val button2 = new JButton("2 player");
         button1.addActionListener(event -> {
             singlePlayerModeSetting();
-            gameWindow.change(new MainGame(gameWindow));
+            gameWindow.change(new ReadyGame(gameWindow));
         });
         button2.addActionListener(event -> {
             twoPlayerModeSetting();
-            gameWindow.change(new MainGame(gameWindow));
+            gameWindow.change(new ReadyGame(gameWindow));
         });
         add(button1);
         add(button2);
