@@ -21,6 +21,7 @@ public class ReadyGame extends JPanel implements Runnable {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
         timer = new Timer(3, 0, WindowConfig.xSize / 2, WindowConfig.ySize / 2);
         this.gameWindow = gameWindow;
+        setFocusable(false);
         startThread();
     }
 

@@ -26,6 +26,7 @@ import unit.Player;
 public class MainGame extends JPanel implements Runnable, KeyListener {
     private Thread thread = null;
     private GameWindow gameWindow;
+    private boolean isThisWindow = false;
 
     private ArrayList<Player> playerList = PlayerService.playerList;
     private ArrayList<Floor> floorList = FloorService.floorList;
@@ -37,8 +38,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     public MainGame(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
         startThread();
+        isThisWindow = true;
         gameWindow.addKeyListener(this);
-        setFocusable(true);
     }
 
     /**
@@ -80,6 +81,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
             });
             timer.status();
             if (timer.stateNowTime() || lifeFlag) {
+                isThisWindow = false;
                 gameWindow.change(new ResultGame(gameWindow, score));
                 break;
             }
@@ -126,6 +128,9 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+        if (!isThisWindow) {
+            return;
+        }
         PlayerConfig.keyPressed(keyEvent);
     }
 
@@ -135,6 +140,9 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
+        if (!isThisWindow) {
+            return;
+        }
         PlayerConfig.keyReleased(keyEvent);
     }
 }
