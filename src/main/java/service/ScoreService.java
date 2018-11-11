@@ -2,22 +2,30 @@ package service;
 
 import config.ScoreConfig;
 import lombok.val;
+import util.ScoreUtil;
 
 public class ScoreService {
 
     /**
      * スコアをサーバに保存するメソッド
+     *
      * @param score
      * @return
      */
     public static boolean postScore(int score) {
-        val postUrl = "http://localhost:8080/api/score/";
+        val postUrl = ScoreConfig.serverApiUrl;
         val JSON = "{\"point\": " + score + "}";
         System.out.println(JSON);
-        val result = ScoreConfig.httpPost(postUrl, JSON);
-        System.out.println("============");
-        System.out.println(result);
-        System.out.println("============");
-        return true;
+        return ScoreUtil.httpPost(postUrl, JSON);
+    }
+
+    /**
+     * サーバからスコアを取得するためのメソッド
+     *
+     * @return
+     */
+    public static String getScore() {
+        val getUrl = ScoreConfig.serverApiUrl;
+        return ScoreUtil.httpGet(getUrl);
     }
 }

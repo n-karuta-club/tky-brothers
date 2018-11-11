@@ -32,11 +32,14 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private ArrayList<Floor> floorList = FloorService.floorList;
     private ArrayList<Enemy> enemyList = EnemyService.enemyList;
     private ArrayList<Fire> fireList = FireService.fireList;
-    private Timer timer = new Timer(WindowConfig.gameTime, 0, 50, 50);
-    private Score score = new Score();
+    private Timer timer;
+    private Score score;
 
     public MainGame(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
+        thread = null;
+        timer = new Timer(WindowConfig.gameTime, 0, 50, 50);
+        score = new Score();
         startThread();
         isThisWindow = true;
         gameWindow.addKeyListener(this);
