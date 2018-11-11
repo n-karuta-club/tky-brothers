@@ -15,6 +15,7 @@ import service.EnemyService;
 import service.FireService;
 import service.FloorService;
 import service.PlayerService;
+import service.ScoreService;
 
 public class ResultGame extends JPanel implements KeyListener {
     private boolean isThisWindow = false;
@@ -30,6 +31,8 @@ public class ResultGame extends JPanel implements KeyListener {
         EnemyService.resetList();
         FireService.resetList();
         FloorService.resetList();
+
+        ScoreService.postScore(score.getPoint());
 
         startButton.addActionListener(event -> {
             isThisWindow = false;
