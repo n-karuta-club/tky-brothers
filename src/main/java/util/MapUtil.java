@@ -12,36 +12,35 @@ public class MapUtil {
      * @return
      */
     public static boolean isPlayerGravity(Player player, Floor floor) {
-        if (HitUtil.isPlayerYPoint(player, floor) || HitUtil.isPlayerXPoint(player, floor)) {
-            return true;
-        }
-        return false;
+        return (HitUtil.isPlayerYPoint(player, floor) || HitUtil.isPlayerXPoint(player, floor));
     }
 
     /**
-     * playerが上昇中であった場合下降する処理に置き換えるメソッド
+     * playerが床と設置しているか判定するメソッド
      * @param player
      */
     public static boolean clashPlayerFloor(Player player) {
-        if (player.getMoveYPoint() < 0) {
-            // player.reverseMoveYPoint();
-            return true;
-        }
-        return false;
+        return player.getMoveYPoint() < 0;
     }
 
+    /**
+     * 敵が床と設置しているか判定するメソッド
+     *
+     * @param enemy
+     * @return
+     */
     public static boolean clashEnemyFloor(Enemy enemy) {
-        if (enemy.getMoveYPoint() < 0) {
-            // player.reverseMoveYPoint();
-            return true;
-        }
-        return false;
+        return enemy.getMoveYPoint() < 0;
     }
 
+    /**
+     * 敵に重力を与えるか判定するメソッド
+     *
+     * @param enemy
+     * @param floor
+     * @return
+     */
     public static boolean isEnemyGravity(Enemy enemy, Floor floor) {
-        if (HitUtil.isEnemyYPoint(enemy, floor) || HitUtil.isEnemyXPoint(enemy, floor)) {
-            return true;
-        }
-        return false;
+        return (HitUtil.isEnemyYPoint(enemy, floor) || HitUtil.isEnemyXPoint(enemy, floor));
     }
 }

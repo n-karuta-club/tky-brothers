@@ -23,6 +23,9 @@ public class PlayerConfig {
     private static boolean isA = false;
     private static boolean isD = false;
 
+    /**
+     * 全てのPlayerキーを押されていない状態にするメソッド
+     */
     public static void setAllKeyFalse() {
         isUP = false;
         isDOWN = false;
@@ -34,8 +37,14 @@ public class PlayerConfig {
         isD = false;
     }
 
-    public static boolean isPressing(int iKeyCode) {
-        switch (iKeyCode) {
+    /**
+     * キーが押されているか否かの判定
+     *
+     * @param iKeyCode
+     * @return
+     */
+    public static boolean isPressing(int KeyCode) {
+        switch (KeyCode) {
         case KeyEvent.VK_UP:
             return isUP;
         case KeyEvent.VK_DOWN:
@@ -56,8 +65,13 @@ public class PlayerConfig {
         return false;
     }
 
-    public static void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
+    /**
+     * キーを離したかどうかの判定
+     *
+     * @param e
+     */
+    public static void keyPressed(KeyEvent event) {
+        switch (event.getKeyCode()) {
         case KeyEvent.VK_UP:
             isUP = true;
             break;

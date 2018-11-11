@@ -21,6 +21,12 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
     private Timer timer;
     private Thread thread = null;
 
+    /**
+     * コンストラクタ
+     *
+     * @param gameWindow
+     * @param score
+     */
     public ResultGame(GameWindow gameWindow, Score score) {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
         val startButton = new JButton("タイトルへ戻る");
@@ -107,13 +113,11 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
      * Keyをtypeした時
      */
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyTyped(KeyEvent e) {}
 
     /**
-     * Keyを話した時
+     * Keyを離した時
      */
     @Override
-    public void keyReleased(KeyEvent e) {
-    }
+    public void keyReleased(KeyEvent e) {}
 }

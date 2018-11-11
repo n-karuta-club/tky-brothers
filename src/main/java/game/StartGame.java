@@ -104,7 +104,7 @@ public class StartGame extends JPanel implements KeyListener {
     public void keyTyped(KeyEvent e) {}
 
     /**
-     * Keyを話した時
+     * Keyを離した時
      */
     @Override
     public void keyReleased(KeyEvent e) {}

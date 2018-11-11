@@ -182,7 +182,7 @@ public class Player extends Unit {
     }
 
     /**
-     * 表示する画像を決めるメソッド
+     * 表示する画像の切り替え用メソッド
      *
      * @return
      */
