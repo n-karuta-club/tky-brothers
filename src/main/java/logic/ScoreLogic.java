@@ -71,5 +71,4 @@ public class ScoreLogic {
         }
         return hash;
     }
-
 }

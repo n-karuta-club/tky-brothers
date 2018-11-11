@@ -60,5 +60,4 @@ public class FireService {
     public static void removeFire(int index) {
         fireList.remove(index);
     }
-
 }

@@ -20,6 +20,10 @@ public class Floor extends Block {
     private int xSize;
     private int ySize;
 
+    /**
+     * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
+     * @param graphics
+     */
     @Override
     public void print(Graphics graphics) {
        //  graphics.setColor(Color.ORANGE);
@@ -28,10 +32,18 @@ public class Floor extends Block {
        graphics.drawImage(bufferedImage, xPoint, yPoint, xSize, ySize, Color.WHITE, null);
     }
 
+    /**
+     * オブジェクトの状態を確認するメソッド。
+     * runメソッドで呼び出す
+     */
     @Override
-    public void status() {
-    }
+    public void status() {}
 
+    /**
+     * 画像の読み込み
+     *
+     * @return
+     */
     private BufferedImage getImageGraphics() {
         BufferedImage bufferedImage = null;
         try {

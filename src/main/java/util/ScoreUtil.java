@@ -6,6 +6,12 @@ import lombok.val;
 
 public class ScoreUtil {
 
+    /**
+     * サーバにスコアを送信するためのメソッド
+     *
+     * @param score
+     * @return
+     */
     public static boolean postScore(int score) {
         val postUrl = ScoreConfig.serverApiUrl;
         val JSON = "{\"point\": " + score + "}";

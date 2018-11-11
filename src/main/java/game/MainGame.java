@@ -35,6 +35,11 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private Timer timer;
     private Score score;
 
+    /**
+     * コンストラクタ
+     *
+     * @param gameWindow
+     */
     public MainGame(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
         thread = null;
@@ -129,6 +134,9 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         score.print(graphics);
     }
 
+    /**
+     * Keyが押された時
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
         if (!isThisWindow) {
@@ -137,10 +145,17 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         PlayerConfig.keyPressed(keyEvent);
     }
 
+
+    /**
+     * Keyをtypeした時
+     */
     @Override
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * Keyを離した時
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         if (!isThisWindow) {
