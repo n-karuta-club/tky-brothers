@@ -13,10 +13,7 @@ public class ScoreService {
      * @return
      */
     public static boolean postScore(int score) {
-        val postUrl = ScoreConfig.serverApiUrl;
-        val JSON = "{\"point\": " + score + "}";
-        System.out.println(JSON);
-        return ScoreUtil.httpPost(postUrl, JSON);
+        return ScoreUtil.postScore(score);
     }
 
     /**
