@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.val;
 import service.FireService;
 
- @Getter
+@Getter
 @AllArgsConstructor
 public class Player extends Unit {
     // x座標
