@@ -14,7 +14,6 @@ public class Score extends Block {
 
     /**
      * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
-     * @param graphics
      */
     @Override
     public void print(Graphics graphics) {
@@ -26,7 +25,8 @@ public class Score extends Block {
      * runメソッドで呼び出す
      */
     @Override
-    public void status() {}
+    public void status() {
+    }
 
     /**
      * 敵を倒した時のスコアを追加するメソッド
@@ -36,11 +36,12 @@ public class Score extends Block {
     }
 
     public int remainLives() {
-    	int lifePoint = 0;
-    	// playerlist.forEach(player -> {
-    	for (val player: PlayerService.playerList) {
-    		lifePoint += (player.getLife() * ScoreConfig.livesPoint);
-    	};
-    	return lifePoint;
+        int lifePoint = 0;
+        // playerlist.forEach(player -> {
+        for (val player : PlayerService.playerList) {
+            lifePoint += (player.getLife() * ScoreConfig.livesPoint);
+        }
+        ;
+        return lifePoint;
     }
 }

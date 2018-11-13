@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -72,9 +73,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         Thread currentThread = Thread.currentThread();
         boolean lifeFlag = false;
 
-
         while (thread == currentThread) {
-            for (val player: playerList) {
+            for (val player : playerList) {
                 player.status();
                 MapService.addGravityToPlayer(player, floorList);
                 if (HitService.isHitPlayerToEnemy(player, enemyList)) {
@@ -84,7 +84,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                     lifeFlag = true;
                     break;
                 }
-            };
+            }
+            ;
             enemyList.forEach(enemy -> {
                 enemy.status();
                 MapService.addGravityToEnemy(enemy, floorList);
@@ -95,7 +96,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
             });
             timer.status();
             if (timer.stateNowTime() || lifeFlag) {
-            	isThisWindow = false;
+                isThisWindow = false;
                 gameWindow.change(new ResultGame(gameWindow, score));
                 break;
             }
@@ -114,6 +115,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        graphics.fillRect(0, 0, WindowConfig.xSize, WindowConfig.ySize);
+        graphics.setColor(Color.WHITE);
         playerList.forEach(player -> {
             player.print(graphics);
         });
@@ -151,7 +154,6 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         }
         PlayerConfig.keyPressed(keyEvent);
     }
-
 
     /**
      * Keyをtypeした時

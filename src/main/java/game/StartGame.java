@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import block.Map;
 import config.WindowConfig;
 import lombok.val;
 import service.EnemyService;
@@ -18,6 +19,7 @@ import service.PlayerService;
 public class StartGame extends JPanel implements KeyListener {
     private GameWindow gameWindow;
     private boolean isThisWindow = false;
+    private Map map;
 
     /**
      * コンストラクタ
@@ -26,6 +28,7 @@ public class StartGame extends JPanel implements KeyListener {
     public StartGame(GameWindow gameWindow) {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
         this.gameWindow = gameWindow;
+        map = new Map();
         PlayerService.resetList();
         EnemyService.resetList();
         FireService.resetList();
@@ -54,7 +57,7 @@ public class StartGame extends JPanel implements KeyListener {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        graphics.drawString("タイトル画面", WindowConfig.xSize / 2 - 50, 200);
+        map.print(graphics);
     }
 
     /**
