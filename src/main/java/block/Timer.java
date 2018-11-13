@@ -60,6 +60,7 @@ public class Timer extends Block {
      */
     public boolean stateNowTime() {
         if (nowTime < 0) {
+        	// Score.remainLives();
             return true;
         }
         return false;
