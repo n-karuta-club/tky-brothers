@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import config.EnemyConfig;
+import config.PipeConfig;
 import lombok.val;
 import unit.Enemy;
 
@@ -25,10 +26,10 @@ public class EnemyService {
      *  初期化
      */
     public static void initialize() {
-        addEnemy(100, EnemyConfig.yPoint);
-        addEnemy(400, EnemyConfig.yPoint);
-        addEnemy(500, EnemyConfig.yPoint);
-        addEnemy(600, EnemyConfig.yPoint);
+        addEnemy(PipeConfig.XPoint1, EnemyConfig.yPoint);
+        addEnemy(PipeConfig.XPoint1, EnemyConfig.yPoint);
+        addEnemy(PipeConfig.XPoint2, EnemyConfig.yPoint);
+        addEnemy(PipeConfig.XPoint2, EnemyConfig.yPoint);
     }
 
     /**
