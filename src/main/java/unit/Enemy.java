@@ -50,17 +50,17 @@ public class Enemy extends Unit {
 
         switch (moveDirection) {
         case "left":
-            xPoint += EnemyConfig.move;
+            xPoint += EnemyConfig.slowMove;
             break;
         case "right":
-            xPoint -= EnemyConfig.move;
+            xPoint -= EnemyConfig.slowMove;
             break;
-    	case "Left":
-    		xPoint += EnemyConfig.Move;
-    		break;
-    	case "Right":
-    		xPoint -= EnemyConfig.Move;
-    		break;
+        case "Left":
+            xPoint += EnemyConfig.quickMove;
+            break;
+        case "Right":
+            xPoint -= EnemyConfig.quickMove;
+            break;
         }
 
         if (isJump == 0 && jumpFlag == false) {
@@ -147,12 +147,12 @@ public class Enemy extends Unit {
         try {
             if (moveDirection == "left") {
                 bufferedImage = ImageIO
-                        .read(getClass().getResourceAsStream("images/YakaraLeft.jpg"));
+                        .read(getClass().getResourceAsStream("images/YakaraRight.jpg"));
                         // .read(getClass().getResourceAsStream("../resources/img/YakaraLeft.jpg"));
                         // .read(new File(System.getProperty("user.dir") + "/src/main/images/YakaraLeft.jpg"));
             } else {
                 bufferedImage = ImageIO
-                        .read(getClass().getResourceAsStream("images/YakaraRight.jpg"));
+                        .read(getClass().getResourceAsStream("images/YakaraLeft.jpg"));
                         // .read(getClass().getResourceAsStream("../resources/img/YakaraRight.jpg"));
                         // .read(new File(System.getProperty("user.dir") + "/src/main/images/YakaraRight.jpg"));
             }

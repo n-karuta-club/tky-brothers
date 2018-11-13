@@ -1,8 +1,8 @@
 package config;
 
 public class EnemyConfig {
-    public static final int move = 2;
-    public static final int Move = 4;
+    public static final int slowMove = 3;
+    public static final int quickMove = 7;
     public static final int xSize = 64;
     public static final int ySize = 64;
     public static final int xPoint = WindowConfig.xSize / 2;
