@@ -28,7 +28,7 @@ public class ScoreUtil {
      * @return
      */
     public static String httpGet(String getUrl) {
-        return null;
+        return ScoreLogic.httpGet(getUrl);
     }
 
 }
