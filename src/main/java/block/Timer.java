@@ -1,10 +1,13 @@
 package block;
 
 import java.awt.Graphics;
+import java.util.Random;
 
+import config.PipeConfig;
 import config.WindowConfig;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.val;
 import service.EnemyService;
 import service.PlayerService;
 
@@ -38,7 +41,15 @@ public class Timer extends Block {
             nowTime -= 1;
             // 敵を１秒に1体増やす処理
             damageToPlayer();
-            EnemyService.addEnemy(300, 100);
+            Math.random();
+            val random = new Random();
+
+            if (random.nextInt(2) == 0) {
+            	 EnemyService.addEnemy(PipeConfig.XPoint1, 100);
+            } else {
+            	 EnemyService.addEnemy(PipeConfig.XPoint2, 100);
+            }
+
         }
     }
 

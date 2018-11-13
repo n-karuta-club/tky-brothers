@@ -182,6 +182,7 @@ public class Player extends Unit {
         previewYPoint = yTmp;
     }
 
+
     /**
      * 表示する画像の切り替え用メソッド
      *
@@ -237,4 +238,6 @@ public class Player extends Unit {
 
         return bufferedImage;
     }
+
+
 }
