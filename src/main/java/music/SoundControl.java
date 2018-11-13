@@ -1,11 +1,11 @@
-package service;
+package music;
 
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
 
-public class MusicService {
-
+public class SoundControl {
+	
 	// 音楽を鳴らす準備
 	public static Clip Get(File path) {
 		Clip clip = null;
@@ -30,7 +30,7 @@ public class MusicService {
         return null;
     }
 	
-	// ループさせる
+	// ループさせて鳴らす
 	public static void Loop(Clip clip) throws Exception {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 		Thread.sleep(60000);
