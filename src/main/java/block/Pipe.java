@@ -14,8 +14,8 @@ public class Pipe extends Block{
 	@Override
 	public  void print(Graphics graphics) {
 		val bufferedImage = getImageGraphics();
-		graphics.drawImage(bufferedImage,PipeConfig.XPoint1, -50, 80,80,null );
-		graphics.drawImage(bufferedImage,PipeConfig.XPoint2, -50, 80,80,null );
+		graphics.drawImage(bufferedImage,PipeConfig.XPoint1, PipeConfig.YPoint, PipeConfig.XSize, PipeConfig.YSize,null);
+		graphics.drawImage(bufferedImage,PipeConfig.XPoint2, PipeConfig.YPoint, PipeConfig.XSize, PipeConfig.YSize,null);
 	}
 
 	@Override

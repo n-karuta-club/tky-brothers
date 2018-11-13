@@ -55,6 +55,12 @@ public class Enemy extends Unit {
         case "right":
             xPoint -= EnemyConfig.move;
             break;
+    	case "Left":
+    		xPoint += EnemyConfig.Move;
+    		break;
+    	case "Right":
+    		xPoint -= EnemyConfig.Move;
+    		break;
         }
 
         if (isJump == 0 && jumpFlag == false) {

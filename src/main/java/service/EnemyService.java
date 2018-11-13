@@ -55,11 +55,11 @@ public class EnemyService {
     private static String createDirection() {
         Math.random();
         val random = new Random();
-
-        if (random.nextInt(2) == 0) {
-            return "right";
-        } else {
-            return "left";
+        switch(random.nextInt(4)) {
+        case 0:  return "right";
+        case 1:  return "Right";
+        case 2:  return "left";
+        default:  return "Left";
         }
     }
 }
