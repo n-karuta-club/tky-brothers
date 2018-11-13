@@ -32,4 +32,6 @@ public class Score extends Block {
     public void breakEnemy() {
         point += ScoreConfig.enemyBreakPoint;
     }
+
+
 }

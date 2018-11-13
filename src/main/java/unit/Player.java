@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.val;
 import service.FireService;
 
-@Getter
+ @Getter
 @AllArgsConstructor
 public class Player extends Unit {
     // x座標
@@ -181,6 +181,7 @@ public class Player extends Unit {
         previewYPoint = yTmp;
     }
 
+
     /**
      * 表示する画像の切り替え用メソッド
      *
@@ -217,4 +218,6 @@ public class Player extends Unit {
 
         return bufferedImage;
     }
+
+
 }

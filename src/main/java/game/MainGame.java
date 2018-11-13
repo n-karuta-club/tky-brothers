@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import block.Floor;
+import block.Pipe;
 import block.Score;
 import block.Timer;
 import config.PlayerConfig;
@@ -34,6 +35,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private ArrayList<Fire> fireList = FireService.fireList;
     private Timer timer;
     private Score score;
+    private Pipe pipe;
 
     /**
      * コンストラクタ
@@ -45,6 +47,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         thread = null;
         timer = new Timer(WindowConfig.gameTime, 0, 50, 50);
         score = new Score();
+        pipe = new Pipe();
+
         startThread();
         isThisWindow = true;
         gameWindow.addKeyListener(this);
@@ -68,6 +72,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         Thread currentThread = Thread.currentThread();
         boolean lifeFlag = false;
 
+
         while (thread == currentThread) {
             for (val player: playerList) {
                 player.status();
@@ -84,6 +89,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 enemy.status();
                 MapService.addGravityToEnemy(enemy, floorList);
             });
+
             fireList.forEach(fire -> {
                 fire.status();
             });
@@ -120,6 +126,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         fireList.forEach(fire -> {
             fire.print(graphics);
         });
+        pipe.print(graphics);
         for (int index = 0; index < fireList.size(); index++) {
             val fire = fireList.get(index);
             if (HitService.isHitFireToWindow(fire)) {
