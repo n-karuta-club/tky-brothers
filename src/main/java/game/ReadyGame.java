@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -63,6 +64,8 @@ public class ReadyGame extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        graphics.fillRect(0, 0, WindowConfig.xSize, WindowConfig.ySize);
+        graphics.setColor(Color.WHITE);
         timer.print(graphics);
     }
 }
