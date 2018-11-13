@@ -6,8 +6,12 @@ import javax.sound.sampled.*;
 
 public class SoundControl {
 	
-	// 音楽を鳴らす準備
-	public static Clip Get(File path) {
+	/**
+	 *  音楽を鳴らす準備
+	 * @param path
+	 * @return
+	 */
+	private static Clip get(File path) {
 		Clip clip = null;
 		AudioInputStream audioInputStream;
 		try {
@@ -16,7 +20,6 @@ public class SoundControl {
 			DataLine.Info info = new DataLine.Info(Clip.class, audioFormat);
 			clip = (Clip)AudioSystem.getLine(info);
 			clip.open(audioInputStream);
-			return clip;
 		}
 		catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
@@ -27,24 +30,44 @@ public class SoundControl {
 		catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
-        return null;
+        return clip;
     }
 	
-	// ループさせて鳴らす
-	public static void Loop(Clip clip) throws Exception {
-		clip.loop(Clip.LOOP_CONTINUOUSLY);
-		Thread.sleep(60000);
+	/**
+	 *  ループさせて鳴らす
+	 * @param path
+	 */
+	public static void loop(File path) {
+		Clip bgm = get(path);
+		bgm.loop(Clip.LOOP_CONTINUOUSLY);
+		try {
+			Thread.sleep(60000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	// ループさせずに鳴らす
-	public static void Play(Clip clip) throws InterruptedException {
-		// TODO Auto-generated method stub
-		clip.start();
-		Thread.sleep(3000);
+	/**
+	 *  ループさせずに鳴らす
+	 * @param path
+	 */
+	public static void play(File path) {
+		Clip effect = get(path);
+		effect.start();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	// 止める
-	public static void Stop(Clip clip) {
+	/**
+	 *  止める
+	 * @param path
+	 */
+	public static void Stop(File path) {
+		Clip clip = get(path);
 		clip.stop();
 	}
 }
