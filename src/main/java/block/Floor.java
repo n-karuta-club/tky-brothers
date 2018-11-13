@@ -3,7 +3,6 @@ package block;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -26,10 +25,10 @@ public class Floor extends Block {
      */
     @Override
     public void print(Graphics graphics) {
-       //  graphics.setColor(Color.ORANGE);
-       //  graphics.drawRect(xPoint, yPoint, xSize, ySize);
-       val bufferedImage = getImageGraphics();
-       graphics.drawImage(bufferedImage, xPoint, yPoint, xSize, ySize, Color.WHITE, null);
+        // graphics.setColor(Color.ORANGE);
+        // graphics.drawRect(xPoint, yPoint, xSize, ySize);
+        val bufferedImage = getImageGraphics();
+        graphics.drawImage(bufferedImage, xPoint, yPoint, xSize, ySize, Color.WHITE, null);
     }
 
     /**
@@ -37,7 +36,8 @@ public class Floor extends Block {
      * runメソッドで呼び出す
      */
     @Override
-    public void status() {}
+    public void status() {
+    }
 
     /**
      * 画像の読み込み
@@ -47,7 +47,10 @@ public class Floor extends Block {
     private BufferedImage getImageGraphics() {
         BufferedImage bufferedImage = null;
         try {
-            bufferedImage = ImageIO.read(new File(System.getProperty("user.dir") + "/src/main/images/Block.jpg"));
+            // bufferedImage = ImageIO.read(new File(System.getProperty("user.dir") + "/src/main/images/Block.jpg"));
+            // bufferedImage = ImageIO.read(getClass().getResourceAsStream("../resources/img/Block.jpg"));
+            bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/Block.jpg"));
+                                   // .read(getClass().getResourceAsStream("images/YakaraRight.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
