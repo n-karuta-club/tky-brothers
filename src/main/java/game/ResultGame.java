@@ -36,6 +36,8 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
 
         // スコアをサーバに送る
         ScoreService.postScore(score.getPoint());
+        // スコアをサーバから受け取る
+        ScoreService.getScore();
 
         startButton.addActionListener(event -> {
             if (isThisWindow) {
