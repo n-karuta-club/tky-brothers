@@ -3,11 +3,11 @@ package service;
 import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.*;
-import javafx.scene.media.AudioClip;
 
 public class MusicService {
-	
-	public static Clip bgm(File path) {
+
+	// 音楽を鳴らす準備
+	public static Clip Get(File path) {
 		Clip clip = null;
 		AudioInputStream audioInputStream;
 		try {
@@ -30,15 +30,21 @@ public class MusicService {
         return null;
     }
 	
-	public static void loopbgm(Clip clip) throws Exception {
+	// ループさせる
+	public static void Loop(Clip clip) throws Exception {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 		Thread.sleep(60000);
 	}
-		
-	public static AudioClip getsound () {
-		return new AudioClip(System.getProperty("user.dir") + "\\src\\bgm\\damage.wav");
+	
+	// ループさせずに鳴らす
+	public static void Play(Clip clip) throws InterruptedException {
+		// TODO Auto-generated method stub
+		clip.start();
+		Thread.sleep(3000);
 	}
-	public static void playsound(AudioClip audio) {
-		audio.play();
+	
+	// 止める
+	public static void Stop(Clip clip) {
+		clip.stop();
 	}
 }
