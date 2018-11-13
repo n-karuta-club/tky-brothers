@@ -32,7 +32,7 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
         val startButton = new JButton("タイトルへ戻る");
 
-        val scoreLabel = new JLabel(String.valueOf(score.getPoint()));
+        val scoreLabel = new JLabel(String.valueOf(score.getPoint() + score.remainLives()));
         this.gameWindow = gameWindow;
         this.timer = new Timer(3, 0, WindowConfig.xSize - 50, WindowConfig.ySize - 50);
 

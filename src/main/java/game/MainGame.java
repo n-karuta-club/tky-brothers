@@ -95,7 +95,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
             });
             timer.status();
             if (timer.stateNowTime() || lifeFlag) {
-                isThisWindow = false;
+            	isThisWindow = false;
                 gameWindow.change(new ResultGame(gameWindow, score));
                 break;
             }

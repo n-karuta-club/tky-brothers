@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import config.ScoreConfig;
 import config.WindowConfig;
 import lombok.Getter;
+import lombok.val;
+import service.PlayerService;
 
 @Getter
 public class Score extends Block {
@@ -31,5 +33,14 @@ public class Score extends Block {
      */
     public void breakEnemy() {
         point += ScoreConfig.enemyBreakPoint;
+    }
+
+    public int remainLives() {
+    	int lifePoint = 0;
+    	// playerlist.forEach(player -> {
+    	for (val player: PlayerService.playerList) {
+    		lifePoint += (player.getLife() * ScoreConfig.livesPoint);
+    	};
+    	return lifePoint;
     }
 }
