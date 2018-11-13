@@ -6,7 +6,7 @@ import lombok.val;
 
 public class PlayerConfig {
     public static final int move = 5;
-    public static final int life  = 3;
+    public static final int life = 3;
     public static final int xSize = 64;
     public static final int ySize = 64;
     public static final int xPoint = WindowConfig.xSize / 2;
@@ -23,8 +23,28 @@ public class PlayerConfig {
     private static boolean isA = false;
     private static boolean isD = false;
 
-    public static boolean isPressing(int iKeyCode) {
-        switch (iKeyCode) {
+    /**
+     * 全てのPlayerキーを押されていない状態にするメソッド
+     */
+    public static void setAllKeyFalse() {
+        isUP = false;
+        isDOWN = false;
+        isLEFT = false;
+        isRIGHT = false;
+        isW = false;
+        isS = false;
+        isA = false;
+        isD = false;
+    }
+
+    /**
+     * キーが押されているか否かの判定
+     *
+     * @param iKeyCode
+     * @return
+     */
+    public static boolean isPressing(int KeyCode) {
+        switch (KeyCode) {
         case KeyEvent.VK_UP:
             return isUP;
         case KeyEvent.VK_DOWN:
@@ -45,8 +65,13 @@ public class PlayerConfig {
         return false;
     }
 
-    public static void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
+    /**
+     * キーを離したかどうかの判定
+     *
+     * @param e
+     */
+    public static void keyPressed(KeyEvent event) {
+        switch (event.getKeyCode()) {
         case KeyEvent.VK_UP:
             isUP = true;
             break;

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import block.Floor;
+import block.Pipe;
 import block.Score;
 import block.Timer;
 import config.PlayerConfig;
@@ -26,19 +27,31 @@ import unit.Player;
 public class MainGame extends JPanel implements Runnable, KeyListener {
     private Thread thread = null;
     private GameWindow gameWindow;
+    private boolean isThisWindow = false;
 
     private ArrayList<Player> playerList = PlayerService.playerList;
     private ArrayList<Floor> floorList = FloorService.floorList;
     private ArrayList<Enemy> enemyList = EnemyService.enemyList;
     private ArrayList<Fire> fireList = FireService.fireList;
-    private Timer timer = new Timer();
-    private Score score = new Score();
+    private Timer timer;
+    private Score score;
+    private Pipe pipe;
 
+    /**
+     * コンストラクタ
+     *
+     * @param gameWindow
+     */
     public MainGame(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
+        thread = null;
+        timer = new Timer(WindowConfig.gameTime, 0, 50, 50);
+        score = new Score();
+        pipe = new Pipe();
+
         startThread();
+        isThisWindow = true;
         gameWindow.addKeyListener(this);
-        setFocusable(true);
     }
 
     /**
@@ -59,6 +72,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         Thread currentThread = Thread.currentThread();
         boolean lifeFlag = false;
 
+
         while (thread == currentThread) {
             for (val player: playerList) {
                 player.status();
@@ -75,11 +89,13 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 enemy.status();
                 MapService.addGravityToEnemy(enemy, floorList);
             });
+
             fireList.forEach(fire -> {
                 fire.status();
             });
             timer.status();
             if (timer.stateNowTime() || lifeFlag) {
+                isThisWindow = false;
                 gameWindow.change(new ResultGame(gameWindow, score));
                 break;
             }
@@ -110,6 +126,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         fireList.forEach(fire -> {
             fire.print(graphics);
         });
+        pipe.print(graphics);
         for (int index = 0; index < fireList.size(); index++) {
             val fire = fireList.get(index);
             if (HitService.isHitFireToWindow(fire)) {
@@ -124,17 +141,33 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         score.print(graphics);
     }
 
+    /**
+     * Keyが押された時
+     */
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+        if (!isThisWindow) {
+            return;
+        }
         PlayerConfig.keyPressed(keyEvent);
     }
 
+
+    /**
+     * Keyをtypeした時
+     */
     @Override
     public void keyTyped(KeyEvent keyEvent) {
     }
 
+    /**
+     * Keyを離した時
+     */
     @Override
     public void keyReleased(KeyEvent keyEvent) {
+        if (!isThisWindow) {
+            return;
+        }
         PlayerConfig.keyReleased(keyEvent);
     }
 }

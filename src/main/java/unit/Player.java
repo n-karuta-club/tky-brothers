@@ -59,6 +59,7 @@ public class Player extends Unit {
         //  graphics.fillOval(xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize);
         graphics.drawString(String.valueOf(life), 100, 50);
         val bufferedImage = getImageGraphics();
+        // graphics.setXORMode(Color.WHITE);
         graphics.drawImage(bufferedImage, xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize, Color.WHITE, null);
     }
 
@@ -181,22 +182,38 @@ public class Player extends Unit {
         previewYPoint = yTmp;
     }
 
+
     /**
-     * 表示する画像を決めるメソッド
+     * 表示する画像の切り替え用メソッド
      *
      * @return
      */
     private BufferedImage getImageGraphics() {
         BufferedImage bufferedImage = null;
+        System.out.println("?????????????????????????????????");
+        // System.out.println(Paths.get("").toAbsolutePath().toString());
+        System.out.println(new File(".").getAbsoluteFile().getParent());
+        System.out.println(getClass().getResource(new File(".").getAbsolutePath().toString()));
+        System.out.println(getClass().getResource(new File(".").getPath()));
+        System.out.println(getClass().getResource("../resources/img/QLeft.jpg"));
+        System.out.println(getClass().getResource(".."));
+        System.out.println(getClass().getResource(""));
+        System.out.println(getClass().getResource("../resources"));
+        System.out.println(System.getProperty("user.dir"));
+        System.out.println("?????????????????????????????????");
 
         if (playerNumber == 1) {
             try {
                 if (lastMove == moveLeftButton) {
                     bufferedImage = ImageIO
-                            .read(new File(System.getProperty("user.dir") + "/src/main/images/QLeft.jpg"));
+                            .read(getClass().getResourceAsStream("images/QLeft.jpg"));
+                            // .read(getClass().getResourceAsStream("../resources/img/QLeft.jpg"));
+                            // .read(new File(System.getProperty("user.dir") + "/src/main/images/QLeft.jpg"));
                 } else {
                     bufferedImage = ImageIO
-                            .read(new File(System.getProperty("user.dir") + "/src/main/images/QRight.jpg"));
+                            .read(getClass().getResourceAsStream("images/QRight.jpg"));
+                            // .read(getClass().getResourceAsStream("../resources/img/QRight.jpg"));
+                            // .read(new File(System.getProperty("user.dir") + "/src/main/images/QRight.jpg"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -205,10 +222,14 @@ public class Player extends Unit {
             try {
                 if (lastMove == moveLeftButton) {
                     bufferedImage = ImageIO
-                            .read(new File(System.getProperty("user.dir") + "/src/main/images/TLeft.jpg"));
+                            .read(getClass().getResourceAsStream("images/TLeft.jpg"));
+                            // .read(getClass().getResourceAsStream("../resources/img/TLeft.jpg"));
+                            // .read(new File(System.getProperty("user.dir") + "/src/main/images/TLeft.jpg"));
                 } else {
                     bufferedImage = ImageIO
-                            .read(new File(System.getProperty("user.dir") + "/src/main/images/TRight.jpg"));
+                            .read(getClass().getResourceAsStream("images/TRight.jpg"));
+                            // .read(getClass().getResourceAsStream("../resources/img/TRight.jpg"));
+                            // .read(new File(System.getProperty("user.dir") + "/src/main/images/TRight.jpg"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -217,4 +238,6 @@ public class Player extends Unit {
 
         return bufferedImage;
     }
+
+
 }

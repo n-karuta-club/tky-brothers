@@ -3,7 +3,6 @@ package unit;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -28,6 +27,10 @@ public class Enemy extends Unit {
     // Y軸の移動距離
     private int moveYPoint;
 
+    /**
+     * printComponentメソッドで呼び出すことでオブジェクトを表示するためのメソッド
+     * @param graphics
+     */
     @Override
     public void print(Graphics graphics) {
         //  graphics.setColor(Color.RED);
@@ -36,6 +39,10 @@ public class Enemy extends Unit {
         graphics.drawImage(bufferedImage, xPoint, yPoint, EnemyConfig.xSize, EnemyConfig.ySize, Color.WHITE, null);
     }
 
+    /**
+     * オブジェクトの状態を確認するメソッド。
+     * runメソッドで呼び出す
+     */
     @Override
     public void status() {
         val random = new Random();
@@ -123,16 +130,25 @@ public class Enemy extends Unit {
         this.yPoint = yPoint;
     }
 
+    /**
+     * 表示する画像の切り替え用メソッド
+     *
+     * @return
+     */
     private BufferedImage getImageGraphics() {
         BufferedImage bufferedImage = null;
 
         try {
             if (moveDirection == "left") {
                 bufferedImage = ImageIO
-                        .read(new File(System.getProperty("user.dir") + "/src/main/images/YakaraLeft.jpg"));
+                        .read(getClass().getResourceAsStream("images/YakaraLeft.jpg"));
+                        // .read(getClass().getResourceAsStream("../resources/img/YakaraLeft.jpg"));
+                        // .read(new File(System.getProperty("user.dir") + "/src/main/images/YakaraLeft.jpg"));
             } else {
                 bufferedImage = ImageIO
-                        .read(new File(System.getProperty("user.dir") + "/src/main/images/YakaraRight.jpg"));
+                        .read(getClass().getResourceAsStream("images/YakaraRight.jpg"));
+                        // .read(getClass().getResourceAsStream("../resources/img/YakaraRight.jpg"));
+                        // .read(new File(System.getProperty("user.dir") + "/src/main/images/YakaraRight.jpg"));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -140,5 +156,4 @@ public class Enemy extends Unit {
 
         return bufferedImage;
     }
-
 }

@@ -3,7 +3,6 @@ package unit;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -49,7 +48,7 @@ public class Fire extends Unit {
     }
 
     /**
-     * 表示する画像を決めるメソッド
+     * 表示する画像の切り替え用メソッド
      *
      * @return
      */
@@ -60,10 +59,14 @@ public class Fire extends Unit {
             try {
                 if (moveDirection == "left") {
                     bufferedImage = ImageIO
-                            .read(new File(System.getProperty("user.dir") + "/src/main/images/QFireLeft.jpg"));
+                            .read(getClass().getResourceAsStream("images/QFireLeft.jpg"));
+                            // .read(getClass().getResourceAsStream("../resources/img/QFireLeft.jpg"));
+                            // .read(new File(System.getProperty("user.dir") + "/src/main/images/QFireLeft.jpg"));
                 } else {
                     bufferedImage = ImageIO
-                            .read(new File(System.getProperty("user.dir") + "/src/main/images/QFireRight.jpg"));
+                            .read(getClass().getResourceAsStream("images/QFireRight.jpg"));
+                            // .read(getClass().getResourceAsStream("../resources/img/QFireRight.jpg"));
+                            // .read(new File(System.getProperty("user.dir") + "/src/main/images/QFireRight.jpg"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -72,10 +75,14 @@ public class Fire extends Unit {
             try {
                 if (moveDirection == "left") {
                     bufferedImage = ImageIO
-                            .read(new File(System.getProperty("user.dir") + "/src/main/images/TFireLeft.jpg"));
+                            .read(getClass().getResourceAsStream("images/TFireRight.jpg"));
+                            // .read(getClass().getResourceAsStream("../resources/img/TFireLeft.jpg"));
+                            // .read(new File(System.getProperty("user.dir") + "/src/main/images/TFireLeft.jpg"));
                 } else {
                     bufferedImage = ImageIO
-                            .read(new File(System.getProperty("user.dir") + "/src/main/images/TFireRight.jpg"));
+                            .read(getClass().getResourceAsStream("images/TFireLeft.jpg"));
+                            // .read(getClass().getResourceAsStream("../resources/img/TFireRight.jpg"));
+                            // .read(new File(System.getProperty("user.dir") + "/src/main/images/TFireRight.jpg"));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
