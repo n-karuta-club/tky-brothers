@@ -2,12 +2,14 @@ package game;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 import block.Timer;
 import config.WindowConfig;
+import lombok.val;
 
 public class ReadyGame extends JPanel implements Runnable {
     private Timer timer;
@@ -65,7 +67,10 @@ public class ReadyGame extends JPanel implements Runnable {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         graphics.fillRect(0, 0, WindowConfig.xSize, WindowConfig.ySize);
+        // 80はフォントサイズ
+        val font = new Font("impact", Font.PLAIN, WindowConfig.fontSize);
         graphics.setColor(Color.WHITE);
+        graphics.setFont(font);
         timer.print(graphics);
     }
 }

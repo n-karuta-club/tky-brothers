@@ -46,9 +46,9 @@ public class Timer extends Block {
             val random = new Random();
 
             if (random.nextInt(2) == 0) {
-            	 EnemyService.addEnemy(PipeConfig.XPoint1, EnemyConfig.yPoint);
+                 EnemyService.addEnemy(PipeConfig.XPoint1, EnemyConfig.yPoint);
             } else {
-            	 EnemyService.addEnemy(PipeConfig.XPoint2, EnemyConfig.yPoint);
+                 EnemyService.addEnemy(PipeConfig.XPoint2, EnemyConfig.yPoint);
             }
         }
     }
@@ -60,7 +60,7 @@ public class Timer extends Block {
      */
     public boolean stateNowTime() {
         if (nowTime < 0) {
-        	// Score.remainLives();
+            // Score.remainLives();
             return true;
         }
         return false;
