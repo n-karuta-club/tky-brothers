@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JPanel;
 
@@ -13,6 +15,7 @@ import block.Score;
 import block.Timer;
 import config.WindowConfig;
 import lombok.val;
+import service.ParserService;
 import service.ScoreService;
 
 public class ResultGame extends JPanel implements Runnable, KeyListener {
@@ -21,6 +24,8 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
     private Timer timer;
     private Thread thread = null;
     private Score score;
+    private ArrayList<HashMap<String, String>> hash;
+    private boolean isConnectionScoreServer = true;
 
     /**
      * コンストラクタ
@@ -38,16 +43,21 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
         this.timer = new Timer(3, 0, WindowConfig.xSize - 50, WindowConfig.ySize - 50);
 
         // スコアをサーバに送る
-        ScoreService.postScore(score.getPoint());
-        // スコアをサーバから受け取る
-        ScoreService.getScore();
+        isConnectionScoreServer = ScoreService.postScore(score.getPoint());
 
-       //  startButton.addActionListener(event -> {
-       //      if (isThisWindow) {
-       //          isThisWindow = false;
-       //          this.gameWindow.change(new StartGame(this.gameWindow));
-       //      }
-       //  });
+        // スコアサーバとつながっていた場合、スコアをサーバから受け取る
+        if (isConnectionScoreServer) {
+            hash = ParserService.jsonToHashMap(ScoreService.getScore());
+        }
+
+        System.out.println(hash);
+
+        //  startButton.addActionListener(event -> {
+        //      if (isThisWindow) {
+        //          isThisWindow = false;
+        //          this.gameWindow.change(new StartGame(this.gameWindow));
+        //      }
+        //  });
 
         // add(startButton);
         // add(scoreLabel);
@@ -93,12 +103,48 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        // 背景
         graphics.fillRect(0, 0, WindowConfig.xSize, WindowConfig.ySize);
-        // 80はフォントサイズ
-        val font = new Font("impact", Font.PLAIN, WindowConfig.fontSize);
-        graphics.setColor(Color.WHITE);
-        graphics.setFont(font);
-        graphics.drawString(String.valueOf(score.getPoint() + score.remainLives()), WindowConfig.xSize / 2 - WindowConfig.fontSize, WindowConfig.ySize / 2);
+        val scoreFont = new Font("impact", Font.PLAIN, WindowConfig.fontSize);
+        val rankingFont = new Font("impact", Font.PLAIN, WindowConfig.fontSize / 2);
+        val timerFont = new Font("impact", Font.PLAIN, WindowConfig.fontSize / 2);
+
+        // スコアサーバと接続できている場合とできていない場合での表示わけ
+        if (isConnectionScoreServer) {
+            // 自分のスコア
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(scoreFont);
+            graphics.drawString("ID: " + String.valueOf(hash.size()),
+                    WindowConfig.xSize / 2 - WindowConfig.fontSize, WindowConfig.ySize / 2);
+            graphics.drawString("SCORE: " + String.valueOf(score.getPoint() + score.remainLives()),
+                    WindowConfig.xSize / 2 - WindowConfig.fontSize, WindowConfig.ySize / 2 + WindowConfig.fontSize);
+
+            // ランキングのスコア
+            graphics.setFont(rankingFont);
+            graphics.drawString("ID", WindowConfig.xSize / 2 - 300,
+                    150);
+            graphics.drawString("SCORE", WindowConfig.xSize / 2 - 250,
+                    150);
+            for (int index = 0; index < 5; index++) {
+                int i = 0;
+                for (val entry : hash.get(index).entrySet()) {
+                    graphics.drawString(entry.getValue(), WindowConfig.xSize / 2 - 300 + i * 50,
+                            200 + 50 * index);
+                    i++;
+                    // graphics.drawString(entry.getValue(), WindowConfig.xSize / 2 - 250,
+                    //        100 + 50 * index);
+                    // break;
+                }
+            }
+        } else {
+            // 自分のスコア
+            graphics.setColor(Color.WHITE);
+            graphics.setFont(scoreFont);
+            graphics.drawString("SCORE: " + String.valueOf(score.getPoint() + score.remainLives()),
+                    WindowConfig.xSize / 2 - WindowConfig.fontSize * 2, WindowConfig.ySize / 2);
+        }
+
+        graphics.setFont(timerFont);
         if (timer.getNowTime() > 0) {
             timer.print(graphics);
         }
@@ -124,11 +170,13 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
      * Keyをtypeした時
      */
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     /**
      * Keyを離した時
      */
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 }
