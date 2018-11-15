@@ -85,12 +85,10 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                     break;
                 }
             }
-            ;
             enemyList.forEach(enemy -> {
                 enemy.status();
                 MapService.addGravityToEnemy(enemy, floorList);
             });
-
             fireList.forEach(fire -> {
                 fire.status();
             });
@@ -129,6 +127,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         fireList.forEach(fire -> {
             fire.print(graphics);
         });
+        timer.print(graphics);
+        score.print(graphics);
         pipe.print(graphics);
         for (int index = 0; index < fireList.size(); index++) {
             val fire = fireList.get(index);
@@ -140,8 +140,6 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 FireService.removeFire(index);
             }
         }
-        timer.print(graphics);
-        score.print(graphics);
     }
 
     /**

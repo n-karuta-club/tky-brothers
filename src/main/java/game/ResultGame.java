@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import block.Score;
@@ -31,7 +30,7 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
      */
     public ResultGame(GameWindow gameWindow, Score score) {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
-        val startButton = new JButton("タイトルへ戻る");
+        // val startButton = new JButton("タイトルへ戻る");
         // val scoreLabel = new JLabel(String.valueOf(score.getPoint() + score.remainLives()));
 
         this.gameWindow = gameWindow;
@@ -43,14 +42,14 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
         // スコアをサーバから受け取る
         ScoreService.getScore();
 
-        startButton.addActionListener(event -> {
-            if (isThisWindow) {
-                isThisWindow = false;
-                this.gameWindow.change(new StartGame(this.gameWindow));
-            }
-        });
+       //  startButton.addActionListener(event -> {
+       //      if (isThisWindow) {
+       //          isThisWindow = false;
+       //          this.gameWindow.change(new StartGame(this.gameWindow));
+       //      }
+       //  });
 
-        add(startButton);
+        // add(startButton);
         // add(scoreLabel);
         this.gameWindow.addKeyListener(this);
         startThread();
