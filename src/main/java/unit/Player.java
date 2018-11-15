@@ -198,7 +198,7 @@ public class Player extends Unit {
                     if (damageFlag) {
                         System.out.println("hoge");
                         // bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QFlashL.gif"));
-                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/YakaraLeft.jpg"));
+                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QFlashL.jpg"));
                     } else {
                         System.out.println("piyo");
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QLeft.jpg"));
