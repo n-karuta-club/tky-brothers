@@ -5,11 +5,10 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import block.Map;
 import config.WindowConfig;
-import lombok.val;
 import service.EnemyService;
 import service.FireService;
 import service.FloorService;
@@ -18,6 +17,7 @@ import service.PlayerService;
 public class StartGame extends JPanel implements KeyListener {
     private GameWindow gameWindow;
     private boolean isThisWindow = false;
+    private Map map;
 
     /**
      * コンストラクタ
@@ -26,24 +26,27 @@ public class StartGame extends JPanel implements KeyListener {
     public StartGame(GameWindow gameWindow) {
         setPreferredSize(new Dimension(WindowConfig.xSize, WindowConfig.ySize));
         this.gameWindow = gameWindow;
+        map = new Map();
         PlayerService.resetList();
         EnemyService.resetList();
         FireService.resetList();
         FloorService.resetList();
-        val button1 = new JButton("1 player");
-        val button2 = new JButton("2 player");
-        button1.addActionListener(event -> {
-            singlePlayerModeSetting();
-            isThisWindow = false;
-            this.gameWindow.change(new ReadyGame(this.gameWindow));
-        });
-        button2.addActionListener(event -> {
-            twoPlayerModeSetting();
-            isThisWindow = false;
-            this.gameWindow.change(new ReadyGame(this.gameWindow));
-        });
-        add(button1);
-        add(button2);
+        //  val button1 = new JButton("1 player");
+        //  val button2 = new JButton("2 player");
+        //  button1.addActionListener(event -> {
+        //      singlePlayerModeSetting();
+        //      isThisWindow = false;
+        //      this.gameWindow.change(new ReadyGame(this.gameWindow));
+        //  });
+        //  button2.addActionListener(event -> {
+        //      twoPlayerModeSetting();
+        //      isThisWindow = false;
+        //      this.gameWindow.change(new ReadyGame(this.gameWindow));
+        //  });
+        //  add(button1);
+        //  add(button2);
+        // button1.setBounds(WindowConfig.xSize / 2 - 80, WindowConfig.ySize / 2, 50, 30);
+        // button2.setBounds(WindowConfig.xSize / 2 + 80, WindowConfig.ySize / 2, 50, 30);
         this.gameWindow.addKeyListener(this);
         isThisWindow = true;
     }
@@ -54,7 +57,7 @@ public class StartGame extends JPanel implements KeyListener {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        graphics.drawString("タイトル画面", WindowConfig.xSize / 2 - 50, 200);
+        map.print(graphics);
     }
 
     /**
@@ -101,11 +104,13 @@ public class StartGame extends JPanel implements KeyListener {
      * Keyをtypeした時
      */
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     /**
      * Keyを離した時
      */
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 }

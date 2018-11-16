@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -72,9 +73,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         Thread currentThread = Thread.currentThread();
         boolean lifeFlag = false;
 
-
         while (thread == currentThread) {
-            for (val player: playerList) {
+            for (val player : playerList) {
                 player.status();
                 MapService.addGravityToPlayer(player, floorList);
                 if (HitService.isHitPlayerToEnemy(player, enemyList)) {
@@ -84,12 +84,11 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                     lifeFlag = true;
                     break;
                 }
-            };
+            }
             enemyList.forEach(enemy -> {
                 enemy.status();
                 MapService.addGravityToEnemy(enemy, floorList);
             });
-
             fireList.forEach(fire -> {
                 fire.status();
             });
@@ -114,6 +113,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        graphics.fillRect(0, 0, WindowConfig.xSize, WindowConfig.ySize);
+        graphics.setColor(Color.WHITE);
         playerList.forEach(player -> {
             player.print(graphics);
         });
@@ -126,6 +127,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         fireList.forEach(fire -> {
             fire.print(graphics);
         });
+        timer.print(graphics);
+        score.print(graphics);
         pipe.print(graphics);
         for (int index = 0; index < fireList.size(); index++) {
             val fire = fireList.get(index);
@@ -137,8 +140,6 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 FireService.removeFire(index);
             }
         }
-        timer.print(graphics);
-        score.print(graphics);
     }
 
     /**
@@ -151,7 +152,6 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         }
         PlayerConfig.keyPressed(keyEvent);
     }
-
 
     /**
      * Keyをtypeした時

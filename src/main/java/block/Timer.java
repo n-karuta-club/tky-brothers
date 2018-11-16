@@ -3,6 +3,7 @@ package block;
 import java.awt.Graphics;
 import java.util.Random;
 
+import config.EnemyConfig;
 import config.PipeConfig;
 import config.WindowConfig;
 import lombok.AllArgsConstructor;
@@ -45,11 +46,10 @@ public class Timer extends Block {
             val random = new Random();
 
             if (random.nextInt(2) == 0) {
-            	 EnemyService.addEnemy(PipeConfig.XPoint1, 100);
+                 EnemyService.addEnemy(PipeConfig.XPoint1, EnemyConfig.yPoint);
             } else {
-            	 EnemyService.addEnemy(PipeConfig.XPoint2, 100);
+                 EnemyService.addEnemy(PipeConfig.XPoint2, EnemyConfig.yPoint);
             }
-
         }
     }
 
@@ -60,6 +60,7 @@ public class Timer extends Block {
      */
     public boolean stateNowTime() {
         if (nowTime < 0) {
+            // Score.remainLives();
             return true;
         }
         return false;
