@@ -9,12 +9,14 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.sound.sampled.Clip;
 import javax.swing.JPanel;
 
 import block.Score;
 import block.Timer;
 import config.WindowConfig;
 import lombok.val;
+import music.SoundControl;
 import service.ParserService;
 import service.ScoreService;
 
@@ -26,6 +28,7 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
     private Score score;
     private ArrayList<HashMap<String, String>> hash;
     private boolean isConnectionScoreServer = true;
+    private Clip bgm;
 
     /**
      * コンストラクタ
@@ -41,6 +44,7 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
         this.gameWindow = gameWindow;
         this.score = score;
         this.timer = new Timer(3, 0, WindowConfig.xSize - 50, WindowConfig.ySize - 50);
+        this.bgm = SoundControl.play(getClass().getResource("../resource/sound/result.wav"));
 
         // スコアをサーバに送る
         isConnectionScoreServer = ScoreService.postScore(score.getPoint());
@@ -163,6 +167,7 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
         case KeyEvent.VK_S:
             isThisWindow = false;
             gameWindow.change(new StartGame(gameWindow));
+            bgm.stop();
         }
     }
 
