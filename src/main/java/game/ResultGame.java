@@ -54,8 +54,6 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
             hash = ParserService.jsonToHashMap(ScoreService.getScore());
         }
 
-        System.out.println(hash);
-
         //  startButton.addActionListener(event -> {
         //      if (isThisWindow) {
         //          isThisWindow = false;
