@@ -53,7 +53,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         timer = new Timer(WindowConfig.gameTime, 0, 50, 50);
         score = new Score();
         pipe = new Pipe();
-        this.bgm = SoundControl.loop(getClass().getResource("../resource/sound/BGM.wav"));
+        bgm = SoundControl.loop(getClass().getResource("bgm/BGM.wav"));
 
         startThread();
         isThisWindow = true;
@@ -84,7 +84,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 MapService.addGravityToPlayer(player, floorList);
                 if (HitService.isHitPlayerToEnemy(player, enemyList)) {
                     player.damage();
-                    this.damageplay = SoundControl.play(getClass().getResource("../resource/sound/damage.wav"));
+                    damageplay = SoundControl.play(getClass().getResource("bgm/damage.wav"));
                 }
                 if (player.getLife() <= 0) {
                     lifeFlag = true;

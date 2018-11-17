@@ -51,7 +51,8 @@ public class StartGame extends JPanel implements KeyListener {
         // button2.setBounds(WindowConfig.xSize / 2 + 80, WindowConfig.ySize / 2, 50, 30);
         this.gameWindow.addKeyListener(this);
         isThisWindow = true;
-        this.bgm = SoundControl.loop(getClass().getResource("../resource/sound/start.wav"));
+        System.out.println(getClass().getResource(""));
+        this.bgm = SoundControl.loop(getClass().getResource("bgm/start.wav"));
     }
 
     /**
