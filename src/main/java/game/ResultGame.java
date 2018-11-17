@@ -127,8 +127,11 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
                     150);
             graphics.drawString("SCORE", WindowConfig.xSize / 2 - 250,
                     150);
-            for (int index = 0; index < 5; index++) {
+            for (int index = 0; index < hash.size(); index++) {
                 int i = 0;
+                if (index > 4) {
+                    break;
+                }
                 for (val entry : hash.get(index).entrySet()) {
                     graphics.drawString(entry.getValue(), WindowConfig.xSize / 2 - 300 + i * 50,
                             200 + 50 * index);
