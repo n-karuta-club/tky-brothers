@@ -190,25 +190,19 @@ public class Player extends Unit {
     private BufferedImage getImageGraphics() {
         BufferedImage bufferedImage = null;
 
-        System.out.println(damageFlag);
-
         if (playerNumber == 1) {
             try {
                 if (lastMove == moveLeftButton) {
                     if (damageFlag) {
-                        System.out.println("hoge");
                         // bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QFlashL.gif"));
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QFlashL.jpg"));
                     } else {
-                        System.out.println("piyo");
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QLeft.jpg"));
                     }
                 } else {
                     if (damageFlag) {
-                        System.out.println("hoge");
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QFlashR.gif"));
                     } else {
-                        System.out.println("naya");
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QRight.jpg"));
                     }
                 }

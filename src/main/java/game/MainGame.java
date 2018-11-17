@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.sound.sampled.Clip;
 import javax.swing.JPanel;
 
 import block.Floor;
@@ -15,6 +16,7 @@ import block.Timer;
 import config.PlayerConfig;
 import config.WindowConfig;
 import lombok.val;
+import music.SoundControl;
 import service.EnemyService;
 import service.FireService;
 import service.FloorService;
@@ -37,6 +39,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private Timer timer;
     private Score score;
     private Pipe pipe;
+    private Clip bgm;
+    // private Clip Damageplay;
 
     /**
      * コンストラクタ
@@ -49,6 +53,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         timer = new Timer(WindowConfig.gameTime, 0, 50, 50);
         score = new Score();
         pipe = new Pipe();
+        bgm = SoundControl.loop(getClass().getResource("bgm/BGM.wav"));
 
         startThread();
         isThisWindow = true;
@@ -79,6 +84,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 MapService.addGravityToPlayer(player, floorList);
                 if (HitService.isHitPlayerToEnemy(player, enemyList)) {
                     player.damage();
+                    // damagePlay = SoundControl.play(getClass().getResource("bgm/damage.wav"));
                 }
                 if (player.getLife() <= 0) {
                     lifeFlag = true;
@@ -95,6 +101,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
             timer.status();
             if (timer.stateNowTime() || lifeFlag) {
                 isThisWindow = false;
+                bgm.stop();
                 gameWindow.change(new ResultGame(gameWindow, score));
                 break;
             }

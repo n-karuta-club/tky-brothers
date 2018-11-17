@@ -5,10 +5,12 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.sound.sampled.Clip;
 import javax.swing.JPanel;
 
 import block.Map;
 import config.WindowConfig;
+import music.SoundControl;
 import service.EnemyService;
 import service.FireService;
 import service.FloorService;
@@ -18,7 +20,7 @@ public class StartGame extends JPanel implements KeyListener {
     private GameWindow gameWindow;
     private boolean isThisWindow = false;
     private Map map;
-
+    private Clip bgm;
     /**
      * コンストラクタ
      * @param gameWindow
@@ -49,6 +51,7 @@ public class StartGame extends JPanel implements KeyListener {
         // button2.setBounds(WindowConfig.xSize / 2 + 80, WindowConfig.ySize / 2, 50, 30);
         this.gameWindow.addKeyListener(this);
         isThisWindow = true;
+        this.bgm = SoundControl.loop(getClass().getResource("bgm/start.wav"));
     }
 
     /**
@@ -92,11 +95,13 @@ public class StartGame extends JPanel implements KeyListener {
             twoPlayerModeSetting();
             isThisWindow = false;
             gameWindow.change(new ReadyGame(gameWindow));
+            this.bgm.stop();
             break;
         case KeyEvent.VK_DOWN:
             singlePlayerModeSetting();
             isThisWindow = false;
             gameWindow.change(new ReadyGame(gameWindow));
+            this.bgm.stop();
         }
     }
 
