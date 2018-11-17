@@ -40,7 +40,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     private Score score;
     private Pipe pipe;
     private Clip bgm;
-    private Clip damageplay;
+    // private Clip Damageplay;
 
     /**
      * コンストラクタ
@@ -84,7 +84,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
                 MapService.addGravityToPlayer(player, floorList);
                 if (HitService.isHitPlayerToEnemy(player, enemyList)) {
                     player.damage();
-                    damageplay = SoundControl.play(getClass().getResource("bgm/damage.wav"));
+                    // damagePlay = SoundControl.play(getClass().getResource("bgm/damage.wav"));
                 }
                 if (player.getLife() <= 0) {
                     lifeFlag = true;
