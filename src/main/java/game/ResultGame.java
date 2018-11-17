@@ -44,7 +44,7 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
         this.gameWindow = gameWindow;
         this.score = score;
         this.timer = new Timer(3, 0, WindowConfig.xSize - 50, WindowConfig.ySize - 50);
-        this.bgm = SoundControl.play(getClass().getResource("../resource/sound/result.wav"));
+        this.bgm = SoundControl.play(getClass().getResource("bgm/result.wav"));
 
         // スコアをサーバに送る
         isConnectionScoreServer = ScoreService.postScore(score.getPoint());
