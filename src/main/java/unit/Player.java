@@ -55,17 +55,17 @@ public class Player extends Unit {
      */
     @Override
     public void print(Graphics graphics) {
-    	Font font = new Font("sanserif",Font.PLAIN,30);
-    	graphics.setFont(font);
+        Font font = new Font("sanserif",Font.PLAIN,30);
+        graphics.setFont(font);
         //  graphics.setColor(Color.GREEN);
         //  graphics.fillOval(xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize);
         // graphics.setXORMode(Color.WHITE);
-    	if(playerNumber == 1) {
-    		graphics.drawString(String.valueOf(life), PlayerConfig.lifePositionX, PlayerConfig.lifePositionY);
-    	}else {
-    		graphics.drawString(String.valueOf(life), WindowConfig.xSize - PlayerConfig.lifePositionX - 32, PlayerConfig.lifePositionY);
-    	}
-    	val bufferedImage = getImageGraphics();
+        if(playerNumber == 1) {
+            graphics.drawString(String.valueOf(life), PlayerConfig.lifePositionX, PlayerConfig.lifePositionY);
+        }else {
+            graphics.drawString(String.valueOf(life), WindowConfig.xSize - PlayerConfig.lifePositionX - 32, PlayerConfig.lifePositionY);
+        }
+        val bufferedImage = getImageGraphics();
 
         graphics.drawImage(bufferedImage, xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize, Color.WHITE, null);
     }
@@ -203,13 +203,13 @@ public class Player extends Unit {
                 if (lastMove == moveLeftButton) {
                     if (damageFlag) {
                         // bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QFlashL.gif"));
-                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QFlashL.jpg"));
+                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/KAL.jpg"));
                     } else {
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QLeft.jpg"));
                     }
                 } else {
                     if (damageFlag) {
-                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QFlashR.gif"));
+                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/KAR.jpg"));
                     } else {
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/QRight.jpg"));
                     }
@@ -221,13 +221,13 @@ public class Player extends Unit {
             try {
                 if (lastMove == moveLeftButton) {
                     if (damageFlag) {
-                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/TFlashL.gif"));
+                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/TAL.jpg"));
                     } else {
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/TLeft.jpg"));
                     }
                 } else {
                     if (damageFlag) {
-                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/TFlashR.gif"));
+                        bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/TAR.jpg"));
                     } else {
                         bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/TRight.jpg"));
                     }
