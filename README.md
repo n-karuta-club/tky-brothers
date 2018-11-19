@@ -26,6 +26,11 @@
 
 Eclipseのエクスポートから実行可能jarの作成を選択し、作成
 
+## スコアサーバについて
+
+スコアサーバのURL及びエンドポイントは`src/main/java/config/ScoreConfig.java`内の`public static final String serverApiUrl`にて変更してください。  
+例) `http://localhost:8080/api/score`
+
 ## 参考URL
 
 キー同時押し
