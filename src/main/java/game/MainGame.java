@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,7 +17,7 @@ import block.Timer;
 import config.PlayerConfig;
 import config.WindowConfig;
 import lombok.val;
-import music.SoundControl;
+import music.SoundPlayer;
 import service.EnemyService;
 import service.FireService;
 import service.FloorService;
@@ -50,10 +51,9 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     public MainGame(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
         thread = null;
-        timer = new Timer(WindowConfig.gameTime, 0, 50, 50);
+        timer = new Timer(WindowConfig.gameTime, 0, WindowConfig.xSize/2, 100);
         score = new Score();
         pipe = new Pipe();
-        bgm = SoundControl.loop(getClass().getResource("bgm/BGM.wav"));
 
         startThread();
         isThisWindow = true;
@@ -77,6 +77,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     public void run() {
         Thread currentThread = Thread.currentThread();
         boolean lifeFlag = false;
+        bgm = SoundPlayer.playMain();
 
         while (thread == currentThread) {
             for (val player : playerList) {
@@ -120,6 +121,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
     @Override
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, WindowConfig.xSize, WindowConfig.ySize);
         graphics.setColor(Color.WHITE);
         playerList.forEach(player -> {
@@ -134,6 +136,8 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         fireList.forEach(fire -> {
             fire.print(graphics);
         });
+        Font time = new Font("serif",Font.PLAIN,20);
+    	graphics.setFont(time);
         timer.print(graphics);
         score.print(graphics);
         pipe.print(graphics);

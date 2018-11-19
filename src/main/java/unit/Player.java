@@ -1,6 +1,7 @@
 package unit;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -54,11 +55,18 @@ public class Player extends Unit {
      */
     @Override
     public void print(Graphics graphics) {
+    	Font font = new Font("sanserif",Font.PLAIN,30);
+    	graphics.setFont(font);
         //  graphics.setColor(Color.GREEN);
         //  graphics.fillOval(xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize);
         // graphics.setXORMode(Color.WHITE);
-        graphics.drawString(String.valueOf(life), 100, 50);
-        val bufferedImage = getImageGraphics();
+    	if(playerNumber == 1) {
+    		graphics.drawString(String.valueOf(life), PlayerConfig.lifePositionX, PlayerConfig.lifePositionY);
+    	}else {
+    		graphics.drawString(String.valueOf(life), WindowConfig.xSize - PlayerConfig.lifePositionX - 32, PlayerConfig.lifePositionY);
+    	}
+    	val bufferedImage = getImageGraphics();
+
         graphics.drawImage(bufferedImage, xPoint, yPoint, PlayerConfig.xSize, PlayerConfig.ySize, Color.WHITE, null);
     }
 

@@ -75,12 +75,12 @@ public class Fire extends Unit {
             try {
                 if (moveDirection == "left") {
                     bufferedImage = ImageIO
-                            .read(getClass().getResourceAsStream("images/TFireRight.jpg"));
+                            .read(getClass().getResourceAsStream("images/TFireLeft.jpg"));
                             // .read(getClass().getResourceAsStream("../resources/img/TFireLeft.jpg"));
                             // .read(new File(System.getProperty("user.dir") + "/src/main/images/TFireLeft.jpg"));
                 } else {
                     bufferedImage = ImageIO
-                            .read(getClass().getResourceAsStream("images/TFireLeft.jpg"));
+                            .read(getClass().getResourceAsStream("images/TFireRight.jpg"));
                             // .read(getClass().getResourceAsStream("../resources/img/TFireRight.jpg"));
                             // .read(new File(System.getProperty("user.dir") + "/src/main/images/TFireRight.jpg"));
                 }

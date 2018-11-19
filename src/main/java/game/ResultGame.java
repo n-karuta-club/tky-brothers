@@ -16,7 +16,7 @@ import block.Score;
 import block.Timer;
 import config.WindowConfig;
 import lombok.val;
-import music.SoundControl;
+import music.SoundPlayer;
 import service.ParserService;
 import service.ScoreService;
 
@@ -44,7 +44,6 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
         this.gameWindow = gameWindow;
         this.score = score;
         this.timer = new Timer(3, 0, WindowConfig.xSize - 50, WindowConfig.ySize - 50);
-        this.bgm = SoundControl.play(getClass().getResource("bgm/result.wav"));
 
         // スコアをサーバに送る
         isConnectionScoreServer = ScoreService.postScore(score.getPoint());
@@ -83,6 +82,7 @@ public class ResultGame extends JPanel implements Runnable, KeyListener {
     @Override
     public void run() {
         Thread currentThread = Thread.currentThread();
+        this.bgm = SoundPlayer.playResult();
 
         while (thread == currentThread) {
             timer.status();

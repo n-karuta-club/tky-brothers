@@ -13,6 +13,9 @@ public class PlayerConfig {
     public static final int yPoint = WindowConfig.ySize - 64;
     public static final int jumpPoint = 15;
     public static final int damageTime = 3;
+    public static final int lifePositionX = 20;
+    public static final int lifePositionY = 25;
+
 
     private static boolean isUP = false;
     private static boolean isDOWN = false;
