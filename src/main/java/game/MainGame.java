@@ -80,7 +80,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
         bgm = SoundPlayer.playMain();
 
         while (thread == currentThread) {
-            for (val player : playerList) {
+            for (val player: playerList) {
                 player.status();
                 MapService.addGravityToPlayer(player, floorList);
                 if (HitService.isHitPlayerToEnemy(player, enemyList)) {
@@ -137,7 +137,7 @@ public class MainGame extends JPanel implements Runnable, KeyListener {
             fire.print(graphics);
         });
         Font time = new Font("serif",Font.PLAIN,20);
-    	graphics.setFont(time);
+        graphics.setFont(time);
         timer.print(graphics);
         score.print(graphics);
         pipe.print(graphics);
