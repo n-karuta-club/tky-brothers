@@ -4,7 +4,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.Clip;
 import javax.swing.JPanel;
 
@@ -33,22 +36,6 @@ public class StartGame extends JPanel implements KeyListener {
         EnemyService.resetList();
         FireService.resetList();
         FloorService.resetList();
-        //  val button1 = new JButton("1 player");
-        //  val button2 = new JButton("2 player");
-        //  button1.addActionListener(event -> {
-        //      singlePlayerModeSetting();
-        //      isThisWindow = false;
-        //      this.gameWindow.change(new ReadyGame(this.gameWindow));
-        //  });
-        //  button2.addActionListener(event -> {
-        //      twoPlayerModeSetting();
-        //      isThisWindow = false;
-        //      this.gameWindow.change(new ReadyGame(this.gameWindow));
-        //  });
-        //  add(button1);
-        //  add(button2);
-        // button1.setBounds(WindowConfig.xSize / 2 - 80, WindowConfig.ySize / 2, 50, 30);
-        // button2.setBounds(WindowConfig.xSize / 2 + 80, WindowConfig.ySize / 2, 50, 30);
         this.gameWindow.addKeyListener(this);
         isThisWindow = true;
         this.bgm = SoundPlayer.playStart();
@@ -61,6 +48,19 @@ public class StartGame extends JPanel implements KeyListener {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         map.print(graphics);
+        BufferedImage bufferedImage = null;
+        try {
+            bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/1player.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        graphics.drawImage(bufferedImage, WindowConfig.xSize / 2 - 120, WindowConfig.ySize / 2, WindowConfig.titleXSize, WindowConfig.titleYSize, null);
+        try {
+            bufferedImage = ImageIO.read(getClass().getResourceAsStream("images/2player.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        graphics.drawImage(bufferedImage, WindowConfig.xSize / 2 - 120, WindowConfig.ySize / 2 + 50, WindowConfig.titleXSize, WindowConfig.titleYSize, null);
     }
 
     /**

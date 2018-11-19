@@ -9,5 +9,5 @@ public class EnemyConfig {
     public static final int yPoint = WindowConfig.ySize - 200;
     public static final int jumpPoint = 15;
     public static final int sponeRate = 100;
-    public static final int MaxEnemy = 5;
+    public static final int MaxEnemy = 4;
 }
