@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import block.Map;
 import config.WindowConfig;
-import music.SoundControl;
+import music.SoundPlayer;
 import service.EnemyService;
 import service.FireService;
 import service.FloorService;
@@ -51,7 +51,7 @@ public class StartGame extends JPanel implements KeyListener {
         // button2.setBounds(WindowConfig.xSize / 2 + 80, WindowConfig.ySize / 2, 50, 30);
         this.gameWindow.addKeyListener(this);
         isThisWindow = true;
-        this.bgm = SoundControl.loop(getClass().getResource("bgm/start.wav"));
+        this.bgm = SoundPlayer.playStart();
     }
 
     /**

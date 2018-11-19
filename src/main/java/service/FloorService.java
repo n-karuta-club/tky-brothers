@@ -21,7 +21,7 @@ public class FloorService {
      */
     public static void initialize() {
         // 一番下の床
-        addFloor(-10, WindowConfig.ySize - 32, WindowConfig.xSize + 100, FloorConfig.ySize);
+        addFloor(-10, WindowConfig.ySize - 64, WindowConfig.xSize + 100, FloorConfig.ySize);
 
         // その他の床
         addFloor(-150, WindowConfig.ySize - 460, WindowConfig.xSize / 2, FloorConfig.ySize);

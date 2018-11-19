@@ -1,5 +1,6 @@
 package block;
 
+import java.awt.Font;
 import java.awt.Graphics;
 
 import config.ScoreConfig;
@@ -17,6 +18,8 @@ public class Score extends Block {
      */
     @Override
     public void print(Graphics graphics) {
+    	Font score = new Font("DIALOG",Font.PLAIN,20);
+    	graphics.setFont(score);
         graphics.drawString(String.valueOf(point), WindowConfig.xSize / 2, 50);
     }
 
